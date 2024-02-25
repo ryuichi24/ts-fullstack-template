@@ -5,7 +5,8 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "tsc && vite build"
   },
   "private": true,
   "devDependencies": {

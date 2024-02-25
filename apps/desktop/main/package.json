@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "yarn build && concurrently \"yarn tsc:watch\" \"yarn electron:start\"",
     "build": "tsc",
-    "node:watch": "node --watch dist/main/index.js",
-    "electron:start": "electron dist/main/index.js",
+    "node:watch": "node --watch dist/index.js",
+    "electron:start": "electron dist/index.js",
     "tsc:watch": "tsc --watch"
   },
   "private": true,

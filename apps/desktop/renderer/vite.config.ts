@@ -7,6 +7,10 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, envFileDir, "");
   return {
     root: "src",
+    build: {
+      sourcemap: false,
+      outDir: path.resolve(process.cwd(), "dist"),
+    },
     server: {
       // electron app does not have to use browser
       // open: "index.html",

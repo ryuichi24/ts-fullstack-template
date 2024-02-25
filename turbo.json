@@ -8,6 +8,7 @@
       "cache": false,
       // https://github.com/vercel/turbo/issues/7279#issuecomment-1930454699
       "persistent": true
-    }
+    },
+    "build": {}
   }
 }

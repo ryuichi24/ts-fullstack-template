@@ -9,7 +9,9 @@
     "packages/**/*"
   ],
   "scripts": {
-    "dev": "dotenv -e ./.env -c local -- turbo run dev"
+    "dev": "yarn dev:desktop",
+    "dev:desktop": "dotenv -e ./.env -c local -- turbo run dev",
+    "build": "turbo run build"
   },
   "engines": {
     "npm": "please-use-yarn",
