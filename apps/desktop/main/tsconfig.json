@@ -1,7 +1,9 @@
 {
   "extends": "@ts-fullstack-template/tsconfig/node.json",
-  "include": ["src"],
   "compilerOptions": {
-    "outDir": "dist"
-  }
+    "outDir": "dist",
+    // electron does not support es module yet
+    "module": "commonjs"
+  },
+  "include": ["src"]
 }

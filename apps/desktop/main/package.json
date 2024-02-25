@@ -4,14 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "yarn build && concurrently \"yarn tsc:watch\" \"yarn node:watch\"",
+    "dev": "yarn build && concurrently \"yarn tsc:watch\" \"yarn electron:start\"",
     "build": "tsc",
-    "node:watch": "node --watch dist/index.js",
+    "node:watch": "node --watch dist/main/index.js",
+    "electron:start": "electron dist/main/index.js",
     "tsc:watch": "tsc --watch"
   },
   "private": true,
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "electron": "^29.0.1"
   }
 }

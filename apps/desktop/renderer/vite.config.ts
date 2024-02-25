@@ -8,7 +8,8 @@ export default defineConfig(({ mode }) => {
   return {
     root: "src",
     server: {
-      open: "index.html",
+      // electron app does not have to use browser
+      // open: "index.html",
       port: env.DESKTOP_RENDERER_DEV_SERVER_PORT || 3000,
     },
     resolve: {
