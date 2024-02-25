@@ -6,7 +6,7 @@ const isMac = process.platform === "darwin";
 const isWindows = process.platform === "win32";
 const isLinux = process.platform === "linux";
 const rendererDevServerURL = `http://localhost:${process.env.DESKTOP_RENDERER_DEV_SERVER_PORT || 3000}`;
-const preloadScriptPath = path.resolve(__dirname, "..", "preload", "index.js");
+const preloadScriptPath = path.resolve(__dirname, "preload.ts");
 const rendererFilePath = path.resolve(__dirname, "..", "renderer", "index.html");
 
 /**
