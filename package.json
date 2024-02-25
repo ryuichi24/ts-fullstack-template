@@ -1,0 +1,23 @@
+{
+  "name": "ts-fullstack-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/**/*",
+    "packages/**/*"
+  ],
+  "scripts": {
+    "dev": "dotenv -e ./.env -c local -- turbo run dev"
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "node": ">=v20.0.0",
+    "yarn": ">=v1.22.19"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.3.0",
+    "turbo": "^1.12.4"
+  }
+}

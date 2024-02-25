@@ -1,0 +1,22 @@
+{
+  "name": "@ts-fullstack-template/desktop-renderer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite"
+  },
+  "private": true,
+  "devDependencies": {
+    "@ts-fullstack-template/tsconfig": "*",
+    "@types/react": "^18.2.58",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

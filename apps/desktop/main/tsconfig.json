@@ -1,0 +1,7 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/node.json",
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "dist"
+  }
+}

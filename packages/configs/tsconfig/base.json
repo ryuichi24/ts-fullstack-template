@@ -1,0 +1,12 @@
+{
+  "display": "Base",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "sourceMap": true,
+    // must be not "classic" to activate "resolveJsonModule"
+    "moduleResolution": "Node",
+    "resolveJsonModule": true
+  }
+}

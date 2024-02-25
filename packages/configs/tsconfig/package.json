@@ -1,0 +1,18 @@
+{
+  "name": "@ts-fullstack-template/tsconfig",
+  "version": "1.0.0",
+  "private": true,
+  "files": [
+    "base.json",
+    "browser.json",
+    "react.json",
+    "node.json"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/node": "^20.11.20"
+  }
+}

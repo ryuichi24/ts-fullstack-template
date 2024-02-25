@@ -1,0 +1,7 @@
+{
+  "display": "React.js",
+  "extends": "./browser.json",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+}

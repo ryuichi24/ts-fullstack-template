@@ -1,0 +1,17 @@
+{
+  "name": "@ts-fullstack-template/desktop-main",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn build && concurrently \"yarn tsc:watch\" \"yarn node:watch\"",
+    "build": "tsc",
+    "node:watch": "node --watch dist/index.js",
+    "tsc:watch": "tsc --watch"
+  },
+  "private": true,
+  "devDependencies": {
+    "@ts-fullstack-template/tsconfig": "*",
+    "concurrently": "^8.2.2"
+  }
+}

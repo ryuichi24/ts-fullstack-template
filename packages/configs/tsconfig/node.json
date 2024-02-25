@@ -1,0 +1,7 @@
+{
+  "display": "Node.js",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "lib": ["ESNext"]
+  }
+}

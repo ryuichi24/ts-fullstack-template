@@ -1,0 +1,13 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [],
+  "pipeline": {
+    "lint": {},
+    "format": {},
+    "dev": {
+      "cache": false,
+      // https://github.com/vercel/turbo/issues/7279#issuecomment-1930454699
+      "persistent": true
+    }
+  }
+}
