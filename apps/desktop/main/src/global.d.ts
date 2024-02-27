@@ -13,4 +13,5 @@ declare global {
    * A main instance of the application window
    */
   var mainWindow: BrowserWindow | null;
+  var backgroundServer: ChildProcess | null;
 }

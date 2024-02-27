@@ -9,8 +9,8 @@
     "packages/**/*"
   ],
   "scripts": {
-    "dev": "yarn dev:desktop",
-    "dev:desktop": "dotenv -e ./.env -c local -- turbo run dev",
+    "dev": "dotenv -e ./.env -c local -- turbo run dev --filter=!@ts-fullstack-template/server",
+    "dev:web": "dotenv -e ./.env -c local -- turbo run dev --filter=!@ts-fullstack-template/desktop-main",
     "build": "turbo run build"
   },
   "engines": {
