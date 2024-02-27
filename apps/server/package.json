@@ -6,13 +6,19 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "yarn build && concurrently \"yarn tsc:watch\" \"yarn node:watch\"",
+    "dev": "yarn tsc:watch",
+    "dev:web": "yarn build && concurrently \"yarn tsc:watch\" \"yarn node:watch\"",
     "build": "tsc",
     "node:watch": "node --watch dist/index.js",
     "tsc:watch": "tsc --watch"
   },
+  "dependencies": {
+    "@ts-fullstack-template/process-event-emitter": "*",
+    "ws": "^8.16.0"
+  },
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*",
+    "@types/ws": "^8.5.10",
     "concurrently": "^8.2.2"
   }
 }

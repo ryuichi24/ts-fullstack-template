@@ -1,0 +1,7 @@
+{
+  "display": "React.js Lib",
+  "extends": "./react.json",
+  "compilerOptions": {
+    "declaration": true
+  }
+}

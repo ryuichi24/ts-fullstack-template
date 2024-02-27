@@ -11,7 +11,11 @@
     "tsc:watch": "tsc --watch"
   },
   "private": true,
+  "dependencies": {
+    "@ts-fullstack-template/process-event-emitter": "*"
+  },
   "devDependencies": {
+    "@ts-fullstack-template/contract": "*",
     "@ts-fullstack-template/tsconfig": "*",
     "concurrently": "^8.2.2",
     "electron": "^29.0.1"

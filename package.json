@@ -9,8 +9,8 @@
     "packages/**/*"
   ],
   "scripts": {
-    "dev": "dotenv -e ./.env -c local -- turbo run dev --filter=!@ts-fullstack-template/server",
-    "dev:web": "dotenv -e ./.env -c local -- turbo run dev --filter=!@ts-fullstack-template/desktop-main",
+    "dev": "dotenv -e ./.env -c local -- turbo run dev --filter=./apps/**/*",
+    "dev:web": "dotenv -e ./.env -c local -v DEV_TYPE=web -- turbo run dev:web",
     "build": "turbo run build"
   },
   "engines": {

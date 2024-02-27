@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       // electron app does not have to use browser
-      // open: "index.html",
+      open: process.env.DEV_TYPE === "web" ? "index.html" : false,
       port: env.DESKTOP_RENDERER_DEV_SERVER_PORT || 3000,
     },
     resolve: {

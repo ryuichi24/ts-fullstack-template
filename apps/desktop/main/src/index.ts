@@ -1,6 +1,7 @@
 import { fork } from "child_process";
 import path from "path";
 import { BrowserWindow, app } from "electron";
+import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
 
 const isDev = !app.isPackaged;
 const isMac = process.platform === "darwin";
@@ -22,13 +23,18 @@ global.backgroundServer = null;
 async function main() {
   await app.whenReady();
 
-  await createMainWindow().catch(shutDown);
+  // TODO: find a free port dynamically
+  const WEB_SOCKET_PORT = 8888;
+  initServer(backgroundServerPath, WEB_SOCKET_PORT);
+  global.backgroundServer?.on("msg-ws-ready", () => {
+    createMainWindow([WEB_SOCKET_PORT.toString()]).catch(shutDown);
+  });
 }
 
 main().catch(shutDown);
 
-async function createMainWindow() {
-  mainWindow = new BrowserWindow({
+async function createMainWindow(args?: string[]) {
+  global.mainWindow = new BrowserWindow({
     minWidth: 1408,
     minHeight: 848,
     width: 1408,
@@ -38,27 +44,23 @@ async function createMainWindow() {
       nodeIntegration: false,
       contextIsolation: true,
       preload: preloadScriptPath,
+      additionalArguments: args,
     },
   });
 
   if (isDev) {
-    mainWindow.webContents.openDevTools({
+    global.mainWindow.webContents.openDevTools({
       mode: "bottom",
     });
-    await mainWindow.loadURL(rendererDevServerURL);
-    initServer(backgroundServerPath);
+    await global.mainWindow.loadURL(rendererDevServerURL);
   } else {
-    await mainWindow.loadFile(rendererFilePath);
-    initServer(backgroundServerPath);
+    await global.mainWindow.loadFile(rendererFilePath);
   }
 }
 
-function initServer(serverPath: string) {
-  global.backgroundServer = fork(serverPath);
-  global.backgroundServer.on("message", (msg: string) => {
-    console.log(msg);
-  });
-  global.backgroundServer.send("init server");
+function initServer(serverPath: string, port: number) {
+  global.backgroundServer = new ProcessEventEmitter(fork(serverPath, { env: { FORK: "1" } }));
+  global.backgroundServer.emit("msg-init-server", { port });
 }
 
 function shutDown(error: Error) {
