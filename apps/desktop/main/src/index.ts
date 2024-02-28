@@ -2,7 +2,6 @@ import { fork } from "child_process";
 import path from "path";
 import { BrowserWindow, app } from "electron";
 import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
-import { findFreePort } from "./util";
 
 const isDev = !app.isPackaged;
 const isMac = process.platform === "darwin";
