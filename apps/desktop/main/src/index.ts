@@ -2,12 +2,13 @@ import { fork } from "child_process";
 import path from "path";
 import { BrowserWindow, app } from "electron";
 import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
+import { findFreePort } from "./util";
 
 const isDev = !app.isPackaged;
 const isMac = process.platform === "darwin";
 const isWindows = process.platform === "win32";
 const isLinux = process.platform === "linux";
-const rendererDevServerURL = `http://localhost:${process.env.DESKTOP_RENDERER_DEV_SERVER_PORT || 3000}`;
+const rendererDevServerURL = `http://localhost:${process.env.TS_DESKTOP_RENDERER_DEV_SERVER_PORT || 5555}`;
 const preloadScriptPath = path.resolve(__dirname, "preload.js");
 const rendererFilePath = path.resolve(__dirname, "..", "renderer", "index.html");
 const backgroundServerPath = isDev
@@ -22,13 +23,8 @@ global.backgroundServer = null;
 
 async function main() {
   await app.whenReady();
-
-  // TODO: find a free port dynamically
-  const WEB_SOCKET_PORT = 8888;
-  initServer(backgroundServerPath, WEB_SOCKET_PORT);
-  global.backgroundServer?.on("msg-ws-ready", () => {
-    createMainWindow([WEB_SOCKET_PORT.toString()]).catch(shutDown);
-  });
+  const port = await initBGServer(backgroundServerPath);
+  createMainWindow([port.toString()]).catch(shutDown);
 }
 
 main().catch(shutDown);
@@ -58,13 +54,21 @@ async function createMainWindow(args?: string[]) {
   }
 }
 
-function initServer(serverPath: string, port: number) {
-  global.backgroundServer = new ProcessEventEmitter(fork(serverPath, { env: { FORK: "1" } }));
-  global.backgroundServer.emit("msg-init-server", { port });
+async function initBGServer(serverPath: string) {
+  return new Promise<number>((res, rej) => {
+    global.backgroundServer = new ProcessEventEmitter(fork(serverPath, { env: { FORK: "1" } }));
+    global.backgroundServer.on("msg:ws-ready", ({ port }) => {
+      res(port);
+    });
+    global.backgroundServer.on("msg:ws-failed", ({ error }) => {
+      rej(error);
+    });
+  });
 }
 
 function shutDown(error: Error) {
   console.error(error);
-  mainWindow = null;
+  global.mainWindow = null;
+  global.backgroundServer?.close();
   process.exit(1);
 }

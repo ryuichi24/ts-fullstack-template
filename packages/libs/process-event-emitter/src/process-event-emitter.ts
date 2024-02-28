@@ -27,4 +27,15 @@ export class ProcessEventEmitter {
   public on(event: string, handler: (payload: Message["payload"]) => void) {
     this.eventEmitter.on(event, handler);
   }
+
+  public close() {
+    if (this.isChild()) {
+      (this._process as ChildProcess).kill();
+    }
+  }
+
+  private isChild() {
+    // Only child process has "send" method
+    return !this._process.send;
+  }
 }
