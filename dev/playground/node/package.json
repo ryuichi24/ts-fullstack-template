@@ -1,0 +1,13 @@
+{
+  "name": "@ts-fullstack-template/playground-node",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
