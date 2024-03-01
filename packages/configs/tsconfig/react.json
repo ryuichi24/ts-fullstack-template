@@ -2,6 +2,8 @@
   "display": "React.js",
   "extends": "./browser.json",
   "compilerOptions": {
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    // typescript usually does not have to emit the transpiled codes since builder tools such as vite and bebel take care of it
+    "noEmit": true
   }
 }

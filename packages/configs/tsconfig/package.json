@@ -5,10 +5,11 @@
   "files": [
     "base.json",
     "browser.json",
+    "browser.lib.json",
     "react.json",
+    "react.lib.json",
     "node.json",
-    "node.lib.json",
-    "react.lib.json"
+    "node.lib.json"
   ],
   "license": "MIT",
   "devDependencies": {

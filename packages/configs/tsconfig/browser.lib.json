@@ -1,0 +1,5 @@
+{
+  "display": "Browser Lib",
+  "extends": "./browser.json",
+  "compilerOptions": {}
+}
