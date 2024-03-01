@@ -1,0 +1,8 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/node.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "ESNext"
+  },
+  "include": ["src"]
+}
