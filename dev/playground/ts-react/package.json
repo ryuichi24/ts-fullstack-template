@@ -1,0 +1,23 @@
+{
+  "name": "@ts-fullstack-template/playground-ts-react",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "dev:web": "vite",
+    "build": "tsc && vite build"
+  },
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@ts-fullstack-template/tsconfig": "*",
+    "@types/react": "^18.2.58",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "vite": "^5.1.4"
+  }
+}
