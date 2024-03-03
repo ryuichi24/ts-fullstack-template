@@ -1,0 +1,9 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/browser.lib.json",
+  "compilerOptions": {
+    "outDir": "dist/browser"
+  },
+  "include": ["src"],
+  // NOTE and SEE: https://github.com/microsoft/TypeScript/issues/33526#issuecomment-573330299
+  "exclude": ["src/node"]
+}

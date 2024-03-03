@@ -1,5 +1,5 @@
 {
-  "extends": "@ts-fullstack-template/tsconfig/electron.json",
+  "extends": "@ts-fullstack-template/tsconfig/react.lib.json",
   "compilerOptions": {
     "outDir": "dist"
   },

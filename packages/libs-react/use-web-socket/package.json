@@ -1,0 +1,23 @@
+{
+  "name": "@ts-fullstack-template/use-web-socket",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "tsc:watch": "tsc --watch"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "@ts-fullstack-template/web-socket": "*"
+  },
+  "devDependencies": {
+    "@ts-fullstack-template/tsconfig": "*",
+    "@types/react": "^18.2.58"
+  }
+}

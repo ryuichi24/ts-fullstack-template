@@ -1,0 +1,10 @@
+{
+  "display": "Electron",
+  "extends": "./node.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    // electron does not support es module yet
+    "module": "commonjs",
+    "moduleResolution": "Node"
+  }
+}

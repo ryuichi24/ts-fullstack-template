@@ -4,10 +4,7 @@
   "extends": "./node.json",
   "compilerOptions": {
     "declaration": true,
-    // "commonjs": if you want your code to run seamlessly with most current node.js applications.
-    "module": "commonjs",
     // "es2019": the compile target makes your library compatible with node.js version 12 and upwards.
     "target": "es2019"
-  },
-  "include": ["src"]
+  }
 }

@@ -1,0 +1,26 @@
+{
+  "name": "@ts-fullstack-template/web-socket",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "exports": {
+    "./client": "./src/browser/index.ts",
+    "./server": "./src/node/index.ts"
+  },
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "yarn build:node && yarn build:browser",
+    "build:node": "tsc -p tsconfig.node.json",
+    "build:browser": "tsc -p tsconfig.browser.json",
+    "tsc:watch": "tsc --watch"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@ts-fullstack-template/tsconfig": "*",
+    "@types/ws": "^8.5.10"
+  }
+}

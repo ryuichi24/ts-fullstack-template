@@ -2,6 +2,8 @@
   "display": "Node.js",
   "extends": "./base.json",
   "compilerOptions": {
-    "lib": ["ESNext"]
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   }
 }

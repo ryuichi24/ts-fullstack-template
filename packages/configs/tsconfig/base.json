@@ -2,17 +2,14 @@
   "display": "Base",
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
     "strict": true,
     "sourceMap": true,
     // Module '"path"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
     "allowSyntheticDefaultImports": true,
-    // must be not "classic" to activate "resolveJsonModule"
-    "moduleResolution": "Node",
     "resolveJsonModule": true,
     // skip type checking for third-party libraries installed in node_modules
     "skipLibCheck": true,
-    // 
+    // treat common js module as ES module: const moment = require("moment") => import * as moment from "moment"
     "esModuleInterop": true
   }
 }
