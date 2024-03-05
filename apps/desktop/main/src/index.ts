@@ -55,6 +55,8 @@ async function createMainWindow(args?: string[]) {
 
 async function initBGServer(serverPath: string) {
   return new Promise<number>((res, rej) => {
+    // NOTE: the hot reload in dev does not work since the server project is started as child process
+    // and the main process does not re-fork the process accordingly.
     global.backgroundServer = new ProcessEventEmitter(fork(serverPath, { env: { FORK: "1" } }));
     global.backgroundServer.on("msg:ws-ready", ({ port }) => {
       res(port);

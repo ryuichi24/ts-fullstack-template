@@ -1,7 +1,7 @@
 import http from "http";
 import net from "net";
-import { WebSocket, WebSocketServer } from "ws";
 import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
+import { WebSocketServer } from "@ts-fullstack-template/web-socket/server";
 
 global.webSocket = null;
 global.pEvtEmitter = null;
@@ -13,62 +13,81 @@ const RANDOM_PORT = 0;
 
 const isChildProcess = !!process.env.FORK;
 
-if (isChildProcess) {
-  global.pEvtEmitter = new ProcessEventEmitter();
+async function main() {
+  if (isChildProcess) {
+    global.pEvtEmitter = new ProcessEventEmitter();
 
-  initWebSocketServer(RANDOM_PORT, {
-    onStarted(port) {
-      console.log("Web Socket started as a child process");
-      global.pEvtEmitter?.emit("msg:ws-ready", { port });
-    },
-    onConnected() {
+    await initWebSocketServer(RANDOM_PORT, {
+      onStarted(port) {
+        console.log("Web Socket started as a child process");
+        global.pEvtEmitter?.emit("msg:ws-ready", { port });
+      },
+      onError(error) {
+        console.log("Web Socket failed to start as a child process");
+        global.pEvtEmitter?.emit("msg:ws-failed", { error });
+      },
+    });
+  }
+
+  if (!isChildProcess) {
+    const PORT = process.env.TS_WEBSOCKET_PORT ?? 7777;
+    await initWebSocketServer(PORT, {
+      onStarted() {
+        console.log("Web Socket started as a non-child process");
+      },
+    });
+  }
+
+  global?.webSocket?.onConnected((sock) => {
+    if (isChildProcess) {
+      // reset old event handlers
+      global.pEvtEmitter?.offAll();
+
       console.log("Web Socket connected as a child process");
       global.pEvtEmitter?.emit("msg:ws-connected");
-    },
-    onError(error) {
-      console.log("Web Socket failed to start as a child process");
-      global.pEvtEmitter?.emit("msg:ws-failed", { error });
-    },
+
+      // propagate event from main process
+      global.pEvtEmitter?.on("msg:quitting-requested", () => {
+        sock.emit("msg:quitting-requested");
+      });
+    }
+    if (!isChildProcess) {
+      console.log("Web Socket connected as a non-child process");
+    }
+
+    // process message
+    sock.on("msg:greeting-from-client", (payload) => {
+      console.log("got a message from client ", { payload });
+
+      sock.emit("msg:hello-from-server", { server: "ws" });
+    });
   });
 }
 
-if (!isChildProcess) {
-  const PORT = process.env.TS_WEBSOCKET_PORT ?? 7777;
-  initWebSocketServer(PORT, {
-    onStarted() {
-      console.log("Web Socket started as a main process");
-    },
-    onConnected(stream) {
-      console.log("Web Socket connected as a main process");
-    },
-  });
-}
+main();
 
-function initWebSocketServer(
+async function initWebSocketServer(
   port: string | number,
   handlers: {
     onStarted?: (port: number) => void;
-    onConnected?: (stream: WebSocket) => void;
     onError?: (error: NodeJS.ErrnoException) => void;
   },
 ) {
-  initHttpServer(port, {
-    onStarted({ srv, port }) {
-      global.webSocket = new WebSocketServer({ server: srv, path: "/ws" });
+  return new Promise<void>((res, rej) => {
+    initHttpServer(port, {
+      onStarted({ srv, port }) {
+        global.webSocket = new WebSocketServer({ server: srv, path: "/ws" });
+        global.webSocket.on("error", (error: NodeJS.ErrnoException) => {
+          handlers.onError?.(error);
+        });
 
-      global.webSocket.on("connection", (stm) => {
-        handlers.onConnected?.(stm);
-      });
-
-      global.webSocket.on("error", (error: NodeJS.ErrnoException) => {
-        handlers.onError?.(error);
-      });
-
-      handlers.onStarted?.(port);
-    },
-    onError(error) {
-      //
-    },
+        handlers.onStarted?.(port);
+        res();
+      },
+      onError(error) {
+        rej(error);
+      },
+    });
   });
 }
 

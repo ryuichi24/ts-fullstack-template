@@ -1,7 +1,6 @@
 {
   "name": "@ts-fullstack-template/desktop-renderer",
   "version": "1.0.0",
-  "main": "index.js",
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -11,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@ts-fullstack-template/use-web-socket": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

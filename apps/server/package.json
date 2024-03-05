@@ -13,6 +13,7 @@
     "tsc:watch": "tsc --watch"
   },
   "dependencies": {
+    "@ts-fullstack-template/web-socket": "*",
     "@ts-fullstack-template/process-event-emitter": "*",
     "ws": "^8.16.0"
   },

@@ -4,8 +4,9 @@
   "license": "MIT",
   "private": true,
   "exports": {
-    "./client": "./src/browser/index.ts",
-    "./server": "./src/node/index.ts"
+    "./client": "./dist/browser/browser/index.js",
+    "./server": "./dist/node/node/index.js",
+    "./contract": "./dist/node/contract/index.js"
   },
   "files": [
     "/dist"
@@ -14,13 +15,16 @@
     "build": "yarn build:node && yarn build:browser",
     "build:node": "tsc -p tsconfig.node.json",
     "build:browser": "tsc -p tsconfig.browser.json",
-    "tsc:watch": "tsc --watch"
+    "tsc:watch": "yarn build && concurrently \"yarn tsc:watch:node\" \"yarn tsc:watch:browser\"",
+    "tsc:watch:node": "tsc --watch -p tsconfig.node.json",
+    "tsc:watch:browser": "tsc --watch -p tsconfig.browser.json"
   },
   "dependencies": {
     "ws": "^8.16.0"
   },
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*",
-    "@types/ws": "^8.5.10"
+    "@types/ws": "^8.5.10",
+    "concurrently": "^8.2.2"
   }
 }
