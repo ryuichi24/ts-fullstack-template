@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "dev": "dotenv -e ./.env -c local -- turbo run dev --filter=./apps/**/*",
-    "dev:web": "dotenv -e ./.env -c local -v DEV_TYPE=web -- turbo run dev:web",
+    "dev:web": "dotenv -e ./.env -c local -v DEV_TYPE=web -- turbo run dev:web --filter=./apps/**/*",
     "build": "turbo run build"
   },
   "engines": {

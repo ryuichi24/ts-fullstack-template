@@ -4,6 +4,8 @@ type WSOptions = {
   url: string;
 };
 
+// use code 3000 to indicate the connection must be killed without connection retry: https://www.rfc-editor.org/rfc/rfc6455#section-7.4.2
+const KILL_CONNECTION_CODE = 3000;
 export class WebSocketClient {
   private readonly _options: WSOptions;
 
@@ -39,34 +41,25 @@ export class WebSocketClient {
       });
     });
 
-    ws.addEventListener("close", () => {
+    ws.addEventListener("close", (evt) => {
       console.log(`successfully disconnected from ${this._options.url}`);
       const handlers = this._listeners.get("close");
       if (!handlers) return;
       handlers.forEach((handler) => {
         handler();
       });
+      if (evt.code !== KILL_CONNECTION_CODE) {
+        setTimeout(() => {
+          this.connect();
+        }, 1000);
+      }
+    });
+
+    ws.addEventListener("error", () => {
+      ws.close();
     });
 
     this._wsConnection = ws;
-  }
-
-  public onConnected(listener: () => any) {}
-
-  public onStateChange(listener: () => any) {
-    this._wsConnection?.addEventListener("message", listener);
-    this._wsConnection?.addEventListener("open", listener);
-    this._wsConnection?.addEventListener("error", listener);
-    this._wsConnection?.addEventListener("close", listener);
-  }
-
-  public get state() {
-    return {
-      isConnecting: this.isConnecting,
-      isConnected: this.isConnected,
-      isClosing: this.isClosing,
-      isClosed: this.isClosed,
-    };
   }
 
   public on(eventName: EventName, handler: EventHandler) {
@@ -84,7 +77,7 @@ export class WebSocketClient {
   }
 
   public close() {
-    this._wsConnection?.close();
+    this._wsConnection?.close(KILL_CONNECTION_CODE, "SAFE_CLOSE");
   }
 
   public get isConnected() {

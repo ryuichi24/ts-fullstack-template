@@ -1,19 +1,26 @@
-import { useCallback, useSyncExternalStore } from "react";
-import { useWsConnection } from "../use-ws-connection";
+import { WsConnectionManager } from "@ts-fullstack-template/web-socket/client";
 import { EventHandler, EventName } from "@ts-fullstack-template/web-socket/contract";
+import { useEffect, useState } from "react";
 
-type Options = {
-  isGlobal: boolean;
-};
+export function useWebSocket(id: string) {
+  const con = WsConnectionManager.getCon(id);
+  const [isConnected, toggleIsConnected] = useState(false);
 
-export function useWebSocket(url: string, options: Options = { isGlobal: false }) {
-  const { wsClient, closeAll, isConnected } = useWsConnection(url, options);
+  const emit = (eventName: EventName, payload?: any) => con?.emit(eventName, payload);
 
-  const emit = (eventName: EventName, payload?: any) => wsClient?.emit(eventName, payload);
+  useEffect(() => {
+    con.on("open", () => {
+      toggleIsConnected(true);
+    });
+
+    con.on("close", () => {
+      toggleIsConnected(false);
+    });
+  }, []);
 
   const on = (eventName: EventName, handler: EventHandler) => {
-    wsClient?.on(eventName, handler);
+    con?.on(eventName, handler);
   };
 
-  return { emit, on, closeAll, isConnected };
+  return { emit, on, isConnected };
 }

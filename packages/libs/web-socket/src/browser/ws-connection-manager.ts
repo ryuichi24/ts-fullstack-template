@@ -1,24 +1,28 @@
 import { WebSocketClient } from "./web-socket-client";
 
-type Options = {
+export type WSClientOptions = {
+  id?: string;
   url: string;
 };
 
 export class WsConnectionManager {
   private static _wsConnectionMap: Map<string, WebSocketClient> = new Map();
 
-  public static makeGlobalCon(options: Options) {
-    const existingCon = this._wsConnectionMap.get(options.url);
-    if (!existingCon) {
+  public static makeCon(options: WSClientOptions) {
+    const wsId = options.id ?? options.url;
+    if (!this._wsConnectionMap.has(wsId)) {
       const newGlobalCon = new WebSocketClient({ url: options.url });
-      this._wsConnectionMap.set(options.url, newGlobalCon);
-      return newGlobalCon;
+      newGlobalCon.connect();
+      this._wsConnectionMap.set(wsId, newGlobalCon);
     }
-    return existingCon;
   }
 
-  public static makeCon(options: Options) {
-    return new WebSocketClient({ url: options.url });
+  public static getCon(id: string) {
+    const con = this._wsConnectionMap.get(id);
+    if (!con) {
+      throw new Error(`no web socket connection is found with the ID: ${id}`);
+    }
+    return con;
   }
 
   public static closeAll() {
@@ -26,21 +30,5 @@ export class WsConnectionManager {
       wsCon.close();
       wsConMap.delete(url);
     });
-  }
-
-  public static isConnected(url: string) {
-    return this._wsConnectionMap.get(url)?.isConnected;
-  }
-
-  public static isConnecting(url: string) {
-    return this._wsConnectionMap.get(url)?.isConnecting;
-  }
-
-  public static isClosing(url: string) {
-    return this._wsConnectionMap.get(url)?.isClosing;
-  }
-
-  public static isClosedConnected(url: string) {
-    return this._wsConnectionMap.get(url)?.isClosed;
   }
 }

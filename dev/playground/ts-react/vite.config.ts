@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       open: "index.html",
-      port: parseInt(env.VITE_DEV_SERVER_PORT) ?? 3333,
+      port: parseInt(env.VITE_DEV_SERVER_PORT ?? "3333"),
     },
     resolve: {
       alias: [{ find: "@", replacement: path.resolve(process.cwd(), "src") }],

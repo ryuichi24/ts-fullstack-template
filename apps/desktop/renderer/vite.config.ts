@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
     server: {
       // electron app does not have to use browser
       open: process.env.DEV_TYPE === "web" ? "index.html" : false,
-      port: env.TS_DESKTOP_RENDERER_DEV_SERVER_PORT || 5555,
+      port: parseInt(env.TS_DESKTOP_RENDERER_DEV_SERVER_PORT || "5555"),
     },
     resolve: {
       alias: [{ find: "@", replacement: path.resolve(process.cwd(), "src") }],
