@@ -1,7 +1,10 @@
 {
-  "extends": "@ts-fullstack-template/tsconfig/electron.json",
+  "extends": "@ts-fullstack-template/tsconfig/node.json",
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/preload.ts"],
+  // https://stackoverflow.com/a/65718234/13723015
+  "references": [{ "path": "./tsconfig.preload.json" }]
 }

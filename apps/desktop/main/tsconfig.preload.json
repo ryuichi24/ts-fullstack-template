@@ -1,0 +1,12 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/node.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "./dist",
+    // electron preload script must be common js
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "composite": true
+  },
+  "include": ["src/preload.ts"]
+}
