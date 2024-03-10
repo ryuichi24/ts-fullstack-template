@@ -2,8 +2,6 @@
   // electron preload script must be common js
   "extends": "@ts-fullstack-template/tsconfig/node.common.json",
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "./dist",
     "composite": true
   },
   "include": ["src/preload.ts"]

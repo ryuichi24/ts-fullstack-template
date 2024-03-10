@@ -9,5 +9,5 @@
   "include": ["src"],
   "exclude": ["src/preload.ts"],
   // https://stackoverflow.com/a/65718234/13723015
-  "references": [{ "path": "./tsconfig.preload.json" }]
+  "references": [{ "path": "./tsconfig.preload.json" }, { "path": "./tsconfig.scripts.json" }]
 }

@@ -1,0 +1,29 @@
+{
+  "name": "@ts-fullstack-template/esbuild-config",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "/dist"
+  ],
+  "imports": {
+    "#src/*": "./dist/*"
+  },
+  "exports": {
+    "./electron": {
+      "import": "./dist/electron.js",
+      "types": "./dist/type/electron/index.d.ts"
+    },
+    "./node": {
+      "import": "./dist/node.js",
+      "types": "./dist/type/node/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc && tsx scripts/build.ts"
+  },
+  "devDependencies": {
+    "@ts-fullstack-template/tsconfig": "*"
+  }
+}

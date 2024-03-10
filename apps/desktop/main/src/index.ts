@@ -23,7 +23,6 @@ global.backgroundServer = null;
 async function main() {
   await app.whenReady();
   const port = await initBGServer(backgroundServerPath);
-  console.log({ port });
   createMainWindow([port.toString()]).catch(shutDown);
 }
 

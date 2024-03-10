@@ -1,0 +1,11 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/node.lib-bundle.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist/type",
+    "paths": {
+      "#src/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}

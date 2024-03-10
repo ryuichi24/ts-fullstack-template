@@ -8,18 +8,20 @@
   "scripts": {
     "dev": "yarn tsc:watch",
     "dev:web": "yarn build && concurrently \"yarn tsc:watch\" \"yarn node:watch\"",
-    "build": "tsc",
+    "build": "tsc && tsx scripts/build.ts",
     "node:watch": "node --watch dist/index.js",
-    "tsc:watch": "tsc --watch"
+    "tsc:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts"
   },
   "dependencies": {
-    "@ts-fullstack-template/web-socket": "*",
     "@ts-fullstack-template/process-event-emitter": "*",
+    "@ts-fullstack-template/web-socket": "*",
     "ws": "^8.16.0"
   },
   "devDependencies": {
+    "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
     "@types/ws": "^8.5.10",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
   }
 }

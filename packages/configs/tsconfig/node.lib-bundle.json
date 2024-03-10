@@ -1,0 +1,10 @@
+// https://www.tsmean.com/articles/how-to-write-a-typescript-library/
+{
+  "display": "Node.js Bundle Lib",
+  "extends": "./node.bundle.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true
+  }
+}

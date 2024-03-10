@@ -11,10 +11,12 @@
     "node.json",
     "node.lib.json",
     "node.bundle.json",
+    "node.lib-bundle.json",
     "node.common.json"
   ],
   "license": "MIT",
   "devDependencies": {
+    "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
