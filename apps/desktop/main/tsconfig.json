@@ -1,7 +1,10 @@
 {
   "extends": "@ts-fullstack-template/tsconfig/node.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "#src/*": ["./src/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["src/preload.ts"],

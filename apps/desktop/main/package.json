@@ -4,12 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "type": "module",
+  "imports": {
+    "#src/*": "./dist/*"
+  },
   "scripts": {
     "dev": "yarn build && concurrently \"yarn tsc:watch\" \"yarn electron:start\"",
     "build": "tsc --build",
     "node:watch": "node --watch dist/index.js",
     "electron:start": "electron dist/index.js",
-    "tsc:watch": "tsc --watch --build"
+    "tsc:watch": "tsc --build --watch"
   },
   "private": true,
   "dependencies": {
