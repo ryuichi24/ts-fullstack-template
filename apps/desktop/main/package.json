@@ -1,7 +1,7 @@
 {
   "name": "@ts-fullstack-template/desktop-main",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "type": "module",
   "imports": {
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "yarn build && concurrently \"yarn tsc:watch\" \"yarn electron:start\"",
-    "build": "tsc --build",
+    "build": "tsc --build && node scripts/build.js",
     "node:watch": "node --watch dist/index.js",
     "electron:start": "electron dist/index.js",
     "tsc:watch": "tsc --build --watch"
@@ -22,6 +22,7 @@
     "@ts-fullstack-template/contract": "*",
     "@ts-fullstack-template/tsconfig": "*",
     "concurrently": "^8.2.2",
-    "electron": "^29.0.1"
+    "electron": "^29.0.1",
+    "esbuild": "^0.20.1"
   }
 }

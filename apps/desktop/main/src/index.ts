@@ -3,8 +3,6 @@ import path from "path";
 import { BrowserWindow, app } from "electron";
 import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-
 const isDev = !app.isPackaged;
 const isMac = process.platform === "darwin";
 const isWindows = process.platform === "win32";
@@ -25,7 +23,7 @@ global.backgroundServer = null;
 async function main() {
   await app.whenReady();
   const port = await initBGServer(backgroundServerPath);
-  console.log({port})
+  console.log({ port });
   createMainWindow([port.toString()]).catch(shutDown);
 }
 

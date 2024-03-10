@@ -1,0 +1,9 @@
+{
+  "display": "Node.js Common",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "module": "CommonJS",
+    "moduleResolution": "Node"
+  }
+}

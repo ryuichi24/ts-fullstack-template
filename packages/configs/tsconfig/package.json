@@ -10,7 +10,8 @@
     "react.lib.json",
     "node.json",
     "node.lib.json",
-    "electron.json"
+    "node.bundle.json",
+    "node.common.json"
   ],
   "license": "MIT",
   "devDependencies": {

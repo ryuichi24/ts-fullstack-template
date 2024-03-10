@@ -1,1 +1,1 @@
-export * from "./findFreePort.js";
+export * from "./findFreePort";
