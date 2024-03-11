@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "exports": {
     "./client": "./dist/browser/browser/index.js",
     "./server": "./dist/node/node/index.js",
@@ -23,6 +24,7 @@
     "ws": "^8.16.0"
   },
   "devDependencies": {
+    "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
     "@types/ws": "^8.5.10",
     "concurrently": "^8.2.2"

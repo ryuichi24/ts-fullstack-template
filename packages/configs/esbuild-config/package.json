@@ -11,6 +11,10 @@
     "#src/*": "./dist/*"
   },
   "exports": {
+    "./browser": {
+      "import": "./dist/browser.js",
+      "types": "./dist/type/browser/index.d.ts"
+    },
     "./electron": {
       "import": "./dist/electron.js",
       "types": "./dist/type/electron/index.d.ts"

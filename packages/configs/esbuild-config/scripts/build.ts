@@ -5,6 +5,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const rootDir = path.resolve(__dirname, "..");
 
+const browserConfigEntry = path.resolve(rootDir, "src", "browser");
 const electronConfigEntry = path.resolve(rootDir, "src", "electron");
 const nodeConfigEntry = path.resolve(rootDir, "src", "node");
 
@@ -13,7 +14,7 @@ const distFile = path.resolve(rootDir, "dist");
 const tsconfig = path.resolve(rootDir, "tsconfig.json");
 
 await esbuild.build({
-  entryPoints: [electronConfigEntry, nodeConfigEntry],
+  entryPoints: [electronConfigEntry, nodeConfigEntry, browserConfigEntry],
   outdir: distFile,
   tsconfig: tsconfig,
   bundle: true,
