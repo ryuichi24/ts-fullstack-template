@@ -5,20 +5,25 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./client": "./dist/browser/browser/index.js",
-    "./server": "./dist/node/node/index.js",
-    "./contract": "./dist/node/contract/index.js"
+    "./client": {
+      "import": "./dist/browser/index.js",
+      "types": "./dist/type/browser/index.d.ts"
+    },
+    "./server": {
+      "import": "./dist/node/index.js",
+      "types": "./dist/type/node/index.d.ts"
+    },
+    "./contract": {
+      "import": "./dist/type/contract/index.d.ts",
+      "types": "./dist/type/contract/index.d.ts"
+    }
   },
   "files": [
     "/dist"
   ],
   "scripts": {
-    "build": "yarn build:node && yarn build:browser",
-    "build:node": "tsc -p tsconfig.node.json",
-    "build:browser": "tsc -p tsconfig.browser.json",
-    "tsc:watch": "yarn build && concurrently \"yarn tsc:watch:node\" \"yarn tsc:watch:browser\"",
-    "tsc:watch:node": "tsc --watch -p tsconfig.node.json",
-    "tsc:watch:browser": "tsc --watch -p tsconfig.browser.json"
+    "build": "tsc --build && tsx scripts/build.ts",
+    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts"
   },
   "dependencies": {
     "ws": "^8.16.0"
@@ -27,6 +32,7 @@
     "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
     "@types/ws": "^8.5.10",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
   }
 }

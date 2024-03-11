@@ -1,0 +1,7 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/node.lib-bundle.json",
+  "compilerOptions": {
+    "composite": true
+  },
+  "include": ["scripts"]
+}

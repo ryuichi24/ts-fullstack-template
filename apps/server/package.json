@@ -6,16 +6,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "yarn tsc:watch",
-    "dev:web": "yarn build && concurrently \"yarn tsc:watch\" \"yarn node:watch\"",
+    "dev": "yarn build:watch",
+    "dev:web": "yarn build && concurrently \"yarn build:watch\" \"yarn node:watch\"",
     "build": "tsc && tsx scripts/build.ts",
-    "node:watch": "node --watch dist/index.js",
-    "tsc:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts"
+    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
+    "node:watch": "node --watch dist/index.js"
   },
   "dependencies": {
     "@ts-fullstack-template/process-event-emitter": "*",
-    "@ts-fullstack-template/web-socket": "*",
-    "ws": "^8.16.0"
+    "@ts-fullstack-template/web-socket": "*"
   },
   "devDependencies": {
     "@ts-fullstack-template/esbuild-config": "*",

@@ -2,6 +2,7 @@
   "display": "Browser Lib",
   "extends": "./browser.json",
   "compilerOptions": {
-    "declaration": true
+    "declaration": true,
+    "emitDeclarationOnly": true
   }
 }

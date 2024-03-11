@@ -1,9 +1,11 @@
 {
-  "extends": "@ts-fullstack-template/tsconfig/node.lib.json",
+  "extends": "@ts-fullstack-template/tsconfig/node.lib-bundle.json",
   "compilerOptions": {
-    "outDir": "dist/node"
+    "rootDir": "src",
+    "outDir": "dist/type",
+    "composite": true
   },
   "include": ["src"],
   // NOTE and SEE: https://github.com/microsoft/TypeScript/issues/33526#issuecomment-573330299
-  "exclude": ["src/browser"]
+  "exclude": ["src/browser", "*.tsbuildinfo"]
 }

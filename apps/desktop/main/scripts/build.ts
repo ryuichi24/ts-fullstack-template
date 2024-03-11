@@ -14,5 +14,13 @@ const distPreloadFile = path.resolve(rootDir, "dist", "preload.js");
 const tsconfig = path.resolve(rootDir, "tsconfig.json");
 const preloadTsconfig = path.resolve(rootDir, "tsconfig.preload.json");
 
-await buildAsMain({ entryPoints: [entryFile], outfile: distFile, tsconfig: tsconfig });
+await buildAsMain({
+  entryPoints: [entryFile],
+  outfile: distFile,
+  tsconfig: tsconfig,
+  banner: {
+    // for common js imported from third-party libs
+    js: 'import { createRequire } from "module"; import url from "url"; const require = createRequire(import.meta.url); const __filename = url.fileURLToPath(import.meta.url); const __dirname = url.fileURLToPath(new URL(".", import.meta.url));',
+  },
+});
 await buildAsPreload({ entryPoints: [entryPreloadFile], outfile: distPreloadFile, tsconfig: preloadTsconfig });
