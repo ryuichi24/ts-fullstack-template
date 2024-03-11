@@ -1,6 +1,5 @@
 import path from "path";
-import esbuild from "esbuild";
-import { makeMainSettings, makePreloadSettings } from "@ts-fullstack-template/esbuild-config/electron";
+import { buildAsMain, buildAsPreload } from "@ts-fullstack-template/esbuild-config/electron";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -15,16 +14,5 @@ const distPreloadFile = path.resolve(rootDir, "dist", "preload.js");
 const tsconfig = path.resolve(rootDir, "tsconfig.json");
 const preloadTsconfig = path.resolve(rootDir, "tsconfig.preload.json");
 
-await esbuild.build({
-  ...makeMainSettings(),
-  entryPoints: [entryFile],
-  outfile: distFile,
-  tsconfig: tsconfig,
-});
-
-await esbuild.build({
-  ...makePreloadSettings(),
-  entryPoints: [entryPreloadFile],
-  outfile: distPreloadFile,
-  tsconfig: preloadTsconfig,
-});
+await buildAsMain({ entryPoints: [entryFile], outfile: distFile, tsconfig: tsconfig });
+await buildAsPreload({ entryPoints: [entryPreloadFile], outfile: distPreloadFile, tsconfig: preloadTsconfig });

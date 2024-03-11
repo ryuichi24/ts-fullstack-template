@@ -1,21 +1,7 @@
-import { BuildOptions, SameShape } from "esbuild";
-import { makeNodeSettings } from "#src/node";
+import { makeBuilder } from "../util/make-builder";
+import { mainConfig } from "#src/electron/main";
+import { preloadConfig } from "#src/electron/preload";
 
-export function makeMainSettings(options?: BuildOptions): SameShape<BuildOptions, BuildOptions> {
-  return {
-    ...makeNodeSettings(),
-    external: ["electron"],
-    ...options,
-  };
-}
+export const buildAsMain = makeBuilder(mainConfig);
 
-export function makePreloadSettings(options?: BuildOptions): SameShape<BuildOptions, BuildOptions> {
-  return {
-    ...makeNodeSettings(),
-    external: ["electron"],
-    // preload script is loaded as common js when the renderer process is sandboxed: see https://www.electronjs.org/docs/latest/tutorial/esm#preload-scripts
-    format: "cjs",
-    banner: undefined,
-    ...options,
-  };
-}
+export const buildAsPreload = makeBuilder(preloadConfig);
