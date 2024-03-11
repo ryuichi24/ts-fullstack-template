@@ -23,7 +23,8 @@
   ],
   "scripts": {
     "build": "tsc --build && tsx scripts/build.ts",
-    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts"
+    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
+    "postinstall": "yarn build"
   },
   "dependencies": {
     "ws": "^8.16.0"

@@ -25,7 +25,8 @@
     }
   },
   "scripts": {
-    "build": "tsc && tsx scripts/build.ts"
+    "build": "tsc && tsx scripts/build.ts",
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*"

@@ -15,7 +15,8 @@
   },
   "scripts": {
     "build": "tsc && tsx scripts/build.ts",
-    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts"
+    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@ts-fullstack-template/esbuild-config": "*",
