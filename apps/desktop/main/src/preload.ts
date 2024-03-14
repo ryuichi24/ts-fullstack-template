@@ -1,6 +1,6 @@
 // https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/2974#issuecomment-1213008550
 import { contextBridge } from "electron";
-import { type EXPOSED } from "@ts-fullstack-template/contract";
+import { type ExposedContext } from "@ts-fullstack-template/desktop-contract";
 
-const exposed: EXPOSED = { webSocketPort: parseInt(process.argv.slice(-1)[0]) };
+const exposed: ExposedContext = { webSocketPort: parseInt(process.argv.slice(-1)[0]) };
 contextBridge.exposeInMainWorld("EXPOSED", exposed);

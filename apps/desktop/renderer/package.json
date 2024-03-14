@@ -15,7 +15,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@ts-fullstack-template/contract": "*",
+    "@ts-fullstack-template/desktop-contract": "*",
     "@ts-fullstack-template/tsconfig": "*",
     "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",

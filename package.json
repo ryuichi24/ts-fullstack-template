@@ -12,7 +12,8 @@
   "scripts": {
     "dev": "dotenv -e ./.env -c local -- turbo run dev --filter=./apps/**/*",
     "dev:web": "dotenv -e ./.env -c local -v DEV_TYPE=web -- turbo run dev:web --filter=./apps/**/*",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "clean": "find . \\( -name 'node_modules' -type d -or -name 'dist' -type d -or -name 'release' -type d -or -name '.turbo' -type d -or -name '*.tsbuildinfo' -type f \\) -prune -print -exec rm -rf '{}' \\;"
   },
   "engines": {
     "npm": "please-use-yarn",

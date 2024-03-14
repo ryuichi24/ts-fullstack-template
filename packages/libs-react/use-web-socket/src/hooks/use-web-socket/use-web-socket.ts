@@ -9,6 +9,10 @@ export function useWebSocket(id: string) {
   const emit = (eventName: EventName, payload?: any) => con?.emit(eventName, payload);
 
   useEffect(() => {
+    if (con.isConnected) {
+      toggleIsConnected(true);
+    }
+
     con.on("open", () => {
       toggleIsConnected(true);
     });

@@ -8,20 +8,21 @@
     "#src/*": "./dist/*"
   },
   "scripts": {
-    "dev": "yarn build && concurrently \"yarn tsc:watch\" \"yarn electron:start\"",
+    "dev": "yarn build && concurrently \"yarn build:watch\" \"yarn electron:watch\"",
     "build": "tsc && tsx scripts/build.ts",
-    "node:watch": "node --watch dist/index.js",
+    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
     "electron:start": "electron dist/index.js",
-    "tsc:watch": "tsc --watch"
+    "electron:watch": "electron dist/index.js --watch"
   },
   "private": true,
   "dependencies": {
     "@ts-fullstack-template/process-event-emitter": "*"
   },
   "devDependencies": {
-    "@ts-fullstack-template/contract": "*",
+    "@ts-fullstack-template/desktop-contract": "*",
     "@ts-fullstack-template/tsconfig": "*",
     "@ts-fullstack-template/esbuild-config": "*",
+    "cross-env": "^7.0.3",
     "concurrently": "^8.2.2",
     "electron": "^29.0.1",
     "esbuild": "^0.20.1"

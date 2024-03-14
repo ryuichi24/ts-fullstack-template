@@ -23,11 +23,14 @@
   ],
   "scripts": {
     "build": "yarn type && tsx scripts/build.ts",
-    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
+    "build:watch": "concurrently \"yarn type:watch\" \"cross-env ESBUILD_WATCH=true tsx scripts/build.ts\"",
     "postinstall": "yarn build",
+    "type:watch": "concurrently \"yarn type:watch:node\" \"yarn type:watch:browser\"",
     "type": "yarn type:node && yarn type:browser",
     "type:node": "tsc -p tsconfig.node.json",
-    "type:browser": "tsc -p tsconfig.browser.json"
+    "type:browser": "tsc -p tsconfig.browser.json",
+    "type:watch:node": "tsc --watch -p tsconfig.node.json",
+    "type:watch:browser": "tsc --watch -p tsconfig.browser.json"
   },
   "dependencies": {
     "ws": "^8.16.0"

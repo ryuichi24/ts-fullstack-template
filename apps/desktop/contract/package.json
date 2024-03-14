@@ -1,5 +1,5 @@
 {
-  "name": "@ts-fullstack-template/contract",
+  "name": "@ts-fullstack-template/desktop-contract",
   "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "yarn build && yarn tsc:watch",
     "build": "tsc",
-    "tsc:watch": "tsc --watch"
+    "tsc:watch": "tsc --watch",
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*"

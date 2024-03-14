@@ -1,1 +1,1 @@
-export * from "./ipc";
+export * from "./exposed-context";
