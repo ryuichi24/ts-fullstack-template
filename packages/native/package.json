@@ -7,8 +7,7 @@
   "scripts": {
     "build:initial": "cross-env BUILD_MODE=initial tsx ./scripts/rebuild.ts",
     "build:node": "cross-env BUILD_MODE=node tsx ./scripts/rebuild.ts",
-    "build:electron": "cross-env BUILD_MODE=electron tsx ./scripts/rebuild.ts",
-    "postinstall": "yarn build:initial"
+    "build:electron": "cross-env BUILD_MODE=electron tsx ./scripts/rebuild.ts"
   },
   "dependencies": {
     "better-sqlite3": "^8.6.0"

@@ -16,7 +16,9 @@
     "build": "turbo run build",
     "clean": "node ./scripts/clean.js . node_modules dist release .turbo build-info.json .tsbuildinfo",
     "build:native:node": "yarn workspace @ts-fullstack-template/native build:node",
-    "build:native:electron": "yarn workspace @ts-fullstack-template/native build:electron"
+    "build:native:electron": "yarn workspace @ts-fullstack-template/native build:electron",
+    "build:native:initial": "yarn workspace @ts-fullstack-template/native build:initial",
+    "postinstall": "yarn build:native:initial"
   },
   "engines": {
     "npm": "please-use-yarn",
