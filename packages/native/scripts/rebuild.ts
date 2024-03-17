@@ -49,7 +49,6 @@ if (isNodeBuild && isLastBuildModeNode) {
 }
 
 if (isElectronBuild && !isLastBuildModeElectron) {
-  fs.writeFileSync(buildInfoJsonPath, '{"lastBuildMode": "electron"}', "utf8");
   const electronRebuildCmd = `./node_modules/.bin/electron-rebuild.cmd --force --types prod,dev,optional --module-dir . -v ${targetElectronVersion}`;
   const cmd = isWindows ? electronRebuildCmd.replace(/\//g, "\\") : electronRebuildCmd.replace(".cmd", "");
 
@@ -57,6 +56,8 @@ if (isElectronBuild && !isLastBuildModeElectron) {
     execSync(cmd, {
       stdio: "inherit",
     });
+    fs.writeFileSync(buildInfoJsonPath, '{"lastBuildMode": "electron"}', "utf8");
+    process.exit(0);
   } catch (error) {
     if (isMac) {
       console.log(`
@@ -86,16 +87,19 @@ if (isElectronBuild && !isLastBuildModeElectron) {
       - python\n
     `);
     }
+    process.exit(1);
   }
-
-  process.exit(0);
 }
 
 if (isNodeBuild && !isLastBuildModeNode) {
-  fs.writeFileSync(buildInfoJsonPath, '{"lastBuildMode": "node"}', "utf8");
-  const cmd = `npm rebuild ${nativeModules.join(" ")}`;
-  execSync(cmd, {
-    stdio: "inherit",
-  });
-  process.exit(0);
+  try {
+    const cmd = `npm rebuild ${nativeModules.join(" ")}`;
+    execSync(cmd, {
+      stdio: "inherit",
+    });
+    fs.writeFileSync(buildInfoJsonPath, '{"lastBuildMode": "node"}', "utf8");
+    process.exit(0);
+  } catch (error) {
+    process.exit(1);
+  }
 }
