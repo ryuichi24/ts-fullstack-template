@@ -24,7 +24,7 @@
     "@ts-fullstack-template/esbuild-config": "*",
     "cross-env": "^7.0.3",
     "concurrently": "^8.2.2",
-    "electron": "^29.0.1",
+    "electron": "^28.2.7",
     "esbuild": "^0.20.1"
   }
 }

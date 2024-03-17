@@ -1,0 +1,7 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/node.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": ["scripts"]
+}

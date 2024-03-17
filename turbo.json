@@ -13,7 +13,6 @@
     "dev:web": {
       "cache": false,
       "persistent": true
-    },
-    "build": {}
+    }
   }
 }

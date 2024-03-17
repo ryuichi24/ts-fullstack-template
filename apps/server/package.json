@@ -14,12 +14,12 @@
   },
   "dependencies": {
     "@ts-fullstack-template/process-event-emitter": "*",
-    "@ts-fullstack-template/web-socket": "*"
+    "@ts-fullstack-template/web-socket": "*",
+    "@ts-fullstack-template/native": "*"
   },
   "devDependencies": {
     "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
-    "@types/ws": "^8.5.10",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3"
   }

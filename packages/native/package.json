@@ -1,0 +1,23 @@
+{
+  "name": "@ts-fullstack-template/native",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:initial": "cross-env BUILD_MODE=initial tsx ./scripts/rebuild.ts",
+    "build:node": "cross-env BUILD_MODE=node tsx ./scripts/rebuild.ts",
+    "build:electron": "cross-env BUILD_MODE=electron tsx ./scripts/rebuild.ts",
+    "postinstall": "yarn build:initial"
+  },
+  "dependencies": {
+    "better-sqlite3": "^8.6.0"
+  },
+  "devDependencies": {
+    "@ts-fullstack-template/tsconfig": "*",
+    "@types/better-sqlite3": "^7.6.4",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "@electron/rebuild": "^3.6.0"
+  }
+}
