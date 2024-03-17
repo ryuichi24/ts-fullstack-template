@@ -14,7 +14,7 @@ function searchAll(directory, deleteList) {
     items.forEach((item) => {
       const itemPath = path.join(directory, item);
       const isDir = fs.statSync(itemPath).isDirectory();
-      if (deleteList.some((pattern) => new RegExp(pattern).test(item))) {
+      if (deleteList.some((pattern) => new RegExp(pattern.includes("^") ? pattern : `^${pattern}`).test(item))) {
         if (isDir) {
           foundDirs.push(itemPath);
         } else {

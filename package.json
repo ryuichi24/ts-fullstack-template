@@ -14,7 +14,7 @@
     "dev": "yarn build:native:electron && dotenv -e ./.env -c local -- turbo run dev --filter=./apps/**/*",
     "dev:web": "yarn build:native:node && dotenv -e ./.env -c local -v DEV_TYPE=web -- turbo run dev:web --filter=./apps/**/*",
     "build": "turbo run build",
-    "clean": "node ./scripts/clean.js . node_modules dist release .turbo build-info.json .tsbuildinfo",
+    "clean": "node ./scripts/clean.js . node_modules dist release .turbo build-info.json ^.+\\\\.db$",
     "build:native:node": "yarn workspace @ts-fullstack-template/native build:node",
     "build:native:electron": "yarn workspace @ts-fullstack-template/native build:electron",
     "build:native:initial": "yarn workspace @ts-fullstack-template/native build:initial",
