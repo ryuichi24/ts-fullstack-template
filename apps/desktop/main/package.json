@@ -12,10 +12,12 @@
     "build": "tsc && tsx scripts/build.ts",
     "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
     "electron:start": "electron dist/index.js",
-    "electron:watch": "electron dist/index.js --watch"
+    "electron:watch": "export NODE_OPTIONS='--experimental-import-meta-resolve' && electron dist/index.js"
   },
   "private": true,
   "dependencies": {
+    "@ts-fullstack-template/desktop-renderer": "*",
+    "@ts-fullstack-template/server": "*",
     "@ts-fullstack-template/process-event-emitter": "*"
   },
   "devDependencies": {

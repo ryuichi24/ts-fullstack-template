@@ -4,5 +4,4 @@ await buildAsEsNode({
   entryPoints: ["./src/index.ts"],
   outdir: "./dist",
   tsconfig: "./tsconfig.json",
-  external: [],
 });

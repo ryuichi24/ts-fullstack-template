@@ -7,12 +7,16 @@ const isDev = !app.isPackaged;
 const isMac = process.platform === "darwin";
 const isWindows = process.platform === "win32";
 const isLinux = process.platform === "linux";
-const rendererDevServerURL = `http://localhost:${process.env.TS_DESKTOP_RENDERER_DEV_SERVER_PORT || 5555}`;
+// NOTE: the returned absolute file path cannot be used for child_process.fork
+// const backgroundServerPath = await import.meta.resolve("@ts-fullstack-template/server/dist/index.js");
+
 const preloadScriptPath = path.resolve(__dirname, "preload.js");
-const rendererFilePath = path.resolve(__dirname, "..", "renderer", "index.html");
-const backgroundServerPath = isDev
-  ? path.resolve("..", "..", "server", "dist", "index.js")
-  : path.resolve("server", "dist", "index.js");
+const rendererDevServerURL = `http://localhost:${process.env.TS_DESKTOP_RENDERER_DEV_SERVER_PORT || 5555}`;
+// NOTE: while the main module type is ESM but `require` can be used since esbuild adds a script making a custom `require`
+const rendererFilePath = !isDev
+  ? `file://${require.resolve("@ts-fullstack-template/desktop-renderer/dist/index.html")}`
+  : "";
+const backgroundServerPath = require.resolve("@ts-fullstack-template/server/dist/index.js");
 
 /**
  * Initialize custom global variables

@@ -5,4 +5,5 @@ export const esNodeConfig: EsbuildOptions = {
   platform: "node",
   target: ["node20.4.0"],
   format: "esm",
+  packages: "external",
 };
