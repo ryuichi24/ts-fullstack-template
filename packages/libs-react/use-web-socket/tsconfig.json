@@ -1,5 +1,5 @@
 {
-  "extends": "@ts-fullstack-template/tsconfig/react.lib.json",
+  "extends": "@ts-fullstack-template/tsconfig/react.lib",
   "compilerOptions": {
     "outDir": "dist"
   },

@@ -1,8 +1,0 @@
-{
-  "display": "Browser Lib",
-  "extends": "./browser.json",
-  "compilerOptions": {
-    "declaration": true,
-    "emitDeclarationOnly": true
-  }
-}

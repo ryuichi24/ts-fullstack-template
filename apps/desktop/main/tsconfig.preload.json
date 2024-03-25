@@ -1,6 +1,6 @@
 {
   // electron preload script must be common js
-  "extends": "@ts-fullstack-template/tsconfig/node.common.json",
+  "extends": "@ts-fullstack-template/tsconfig/node.common",
   "compilerOptions": {
     "composite": true
   },

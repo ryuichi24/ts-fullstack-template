@@ -1,5 +1,5 @@
 {
-  "extends": "@ts-fullstack-template/tsconfig/node.bundle.json",
+  "extends": "@ts-fullstack-template/tsconfig/node.bundle",
   "compilerOptions": {
     "outDir": "dist"
   },

@@ -1,0 +1,9 @@
+{
+  "display": "Node.js",
+  "extends": "../base/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  }
+}

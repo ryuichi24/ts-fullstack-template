@@ -1,0 +1,10 @@
+{
+  "display": "Node.js Bundle",
+  "extends": "../node/tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "allowImportingTsExtensions": true
+  }
+}

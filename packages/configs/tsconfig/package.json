@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "files": [
-    "base.json",
-    "browser.json",
-    "browser.lib.json",
-    "react.json",
-    "react.lib.json",
-    "node.json",
-    "node.lib.json",
-    "node.bundle.json",
-    "node.lib-bundle.json",
-    "node.common.json"
+    "base",
+    "browser",
+    "browser.lib",
+    "react",
+    "react.lib",
+    "node",
+    "node.lib",
+    "node.bundle",
+    "node.lib-bundle",
+    "node.common"
   ],
   "license": "MIT",
   "devDependencies": {

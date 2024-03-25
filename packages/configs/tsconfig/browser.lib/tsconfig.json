@@ -1,0 +1,8 @@
+{
+  "display": "Browser Lib",
+  "extends": "../browser/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true
+  }
+}

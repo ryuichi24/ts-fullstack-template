@@ -1,0 +1,8 @@
+{
+  "display": "React.js Lib",
+  "extends": "../react/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "noEmit": false
+  }
+}
