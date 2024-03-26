@@ -7,7 +7,5 @@
   "private": true,
   "scripts": {
     "dev": "node --watch src/index.js"
-  },
-  "dependencies": {},
-  "devDependencies": {}
+  }
 }

@@ -38,8 +38,11 @@
   "devDependencies": {
     "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
+    "@types/node": "^20.11.20",
     "@types/ws": "^8.5.10",
     "concurrently": "^8.2.2",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
   }
 }

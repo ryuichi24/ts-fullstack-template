@@ -21,6 +21,9 @@
   "devDependencies": {
     "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
-    "concurrently": "^8.2.2"
+    "@types/node": "^20.11.20",
+    "concurrently": "^8.2.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
   }
 }

@@ -14,11 +14,12 @@
     "postinstall": "yarn build"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "@ts-fullstack-template/web-socket": "*"
+    "@ts-fullstack-template/web-socket": "*",
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*",
-    "@types/react": "^18.2.58"
+    "@types/react": "^18.2.58",
+    "typescript": "^5.3.3"
   }
 }

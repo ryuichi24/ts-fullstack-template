@@ -5,16 +5,21 @@
   "license": "MIT",
   "type": "module",
   "private": true,
-  "workspaces": [
-    "apps/**/*",
-    "dev/**/*",
-    "packages/**/*"
+  "workspaces": {
+    "packages": [
+      "apps/**/*",
+      "dev/**/*",
+      "packages/**/*"
+    ]
+  },
+  "nohoist": [
+    "**"
   ],
   "scripts": {
-    "dev": "yarn build:native:electron && dotenv -e ./.env -c local -- turbo run dev --filter=./apps/**/*",
-    "dev:web": "yarn build:native:node && dotenv -e ./.env -c local -v DEV_TYPE=web -- turbo run dev:web --filter=./apps/**/*",
+    "dev": "yarn build:native:electron && dotenv -e ./.env -c local -- turbo run dev --filter=\\{\"./apps/**/*\"\\}",
+    "dev:web": "yarn build:native:node && dotenv -e ./.env -c local -v DEV_TYPE=web -- turbo run dev:web --filter=\\{\"./apps/**/*\"\\}",
     "build": "turbo run build",
-    "clean": "node ./scripts/clean.js . node_modules dist .turbo build-info.json ^.+\\\\.db$",
+    "clean": "node ./scripts/clean.js . node_modules dist .turbo build-info.json",
     "build:native:node": "yarn workspace @ts-fullstack-template/native build:node",
     "build:native:electron": "yarn workspace @ts-fullstack-template/native build:electron",
     "build:native:initial": "yarn workspace @ts-fullstack-template/native build:initial",
@@ -29,5 +34,5 @@
     "dotenv-cli": "^7.3.0",
     "turbo": "^1.12.4"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@3.6.4"
 }

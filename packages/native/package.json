@@ -13,10 +13,13 @@
     "better-sqlite3": "^8.6.0"
   },
   "devDependencies": {
+    "@electron/rebuild": "^3.6.0",
     "@ts-fullstack-template/tsconfig": "*",
     "@types/better-sqlite3": "^7.6.4",
+    "@types/node": "^20.11.20",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
-    "@electron/rebuild": "^3.6.0"
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
   }
 }

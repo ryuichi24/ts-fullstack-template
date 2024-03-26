@@ -11,9 +11,9 @@
     "node:watch": "node --watch dist/index.js",
     "tsc:watch": "tsc --watch"
   },
-  "dependencies": {},
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
   }
 }

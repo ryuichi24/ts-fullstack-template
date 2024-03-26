@@ -14,6 +14,7 @@
     "postinstall": "yarn build"
   },
   "devDependencies": {
-    "@ts-fullstack-template/tsconfig": "*"
+    "@ts-fullstack-template/tsconfig": "*",
+    "typescript": "^5.3.3"
   }
 }

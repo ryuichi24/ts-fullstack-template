@@ -93,7 +93,7 @@ if (isElectronBuild && !isLastBuildModeElectron) {
 
 if (isNodeBuild && !isLastBuildModeNode) {
   try {
-    const cmd = `npm rebuild ${nativeModules.join(" ")}`;
+    const cmd = `yarn rebuild ${nativeModules.join(" ")}`;
     execSync(cmd, {
       stdio: "inherit",
     });

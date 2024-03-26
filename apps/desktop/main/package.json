@@ -8,7 +8,7 @@
     "#src/*": "./dist/*"
   },
   "scripts": {
-    "dev": "yarn build && concurrently \"yarn build:watch\" \"yarn electron:watch\"",
+    "dev": "yarn build && concurrently \"yarn build:watch\" \"yarn electron:start\"",
     "build": "tsc && tsx scripts/build.ts",
     "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
     "electron:start": "electron dist/index.js",
@@ -17,16 +17,19 @@
   "private": true,
   "dependencies": {
     "@ts-fullstack-template/desktop-renderer": "*",
-    "@ts-fullstack-template/server": "*",
-    "@ts-fullstack-template/process-event-emitter": "*"
+    "@ts-fullstack-template/process-event-emitter": "*",
+    "@ts-fullstack-template/server": "*"
   },
   "devDependencies": {
     "@ts-fullstack-template/desktop-contract": "*",
-    "@ts-fullstack-template/tsconfig": "*",
     "@ts-fullstack-template/esbuild-config": "*",
-    "cross-env": "^7.0.3",
+    "@ts-fullstack-template/tsconfig": "*",
+    "@types/node": "^20.11.20",
     "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "electron": "^28.2.7",
-    "esbuild": "^0.20.1"
+    "esbuild": "^0.20.1",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
   }
 }

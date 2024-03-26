@@ -15,12 +15,15 @@
   "dependencies": {
     "@ts-fullstack-template/process-event-emitter": "*",
     "@ts-fullstack-template/web-socket": "*",
-    "@ts-fullstack-template/native": "*"
+    "better-sqlite3": "^8.6.0"
   },
   "devDependencies": {
     "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
+    "@types/node": "^20.11.20",
     "concurrently": "^8.2.2",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
   }
 }
