@@ -13,10 +13,10 @@ const isLinux = process.platform === "linux";
 const preloadScriptPath = path.resolve(__dirname, "preload.js");
 const rendererDevServerURL = `http://localhost:${process.env.TS_DESKTOP_RENDERER_DEV_SERVER_PORT || 5555}`;
 // NOTE: while the main module type is ESM but `require` can be used since esbuild adds a script making a custom `require`
-const rendererFilePath = !isDev
-  ? `file://${require.resolve("@ts-fullstack-template/desktop-renderer/dist/index.html")}`
-  : "";
-const backgroundServerPath = require.resolve("@ts-fullstack-template/server/dist/index.js");
+const rendererFilePath = path.resolve(__dirname, "..", "renderer", "index.html");
+const backgroundServerPath = isDev
+  ? require.resolve("@ts-fullstack-template/server/dist/index.js")
+  : path.resolve(__dirname, "..", "server", "index.js");
 
 /**
  * Initialize custom global variables
@@ -61,7 +61,9 @@ async function initBGServer(serverPath: string) {
   return new Promise<number>((res, rej) => {
     // NOTE: the hot reload in dev does not work since the server project is started as child process
     // and the main process does not re-fork the process accordingly.
-    global.backgroundServer = new ProcessEventEmitter(fork(serverPath, { env: { FORK: "1" } }));
+    global.backgroundServer = new ProcessEventEmitter(
+      fork(serverPath, { env: { FORK: "1", ELECTRON_USER_DATA_PATH: app.getPath("userData") } }),
+    );
     global.backgroundServer.on("msg:ws-ready", ({ port }) => {
       res(port);
     });

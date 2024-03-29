@@ -20,6 +20,7 @@
   "devDependencies": {
     "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
+    "@types/better-sqlite3": "^7.6.9",
     "@types/node": "^20.11.20",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",

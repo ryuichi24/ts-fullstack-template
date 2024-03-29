@@ -3,8 +3,8 @@ import { EventHandler, EventName } from "@ts-fullstack-template/web-socket/contr
 import { useEffect, useState } from "react";
 
 export function useWebSocket(id: string) {
-  const con = WsConnectionManager.getCon(id);
   const [isConnected, toggleIsConnected] = useState(false);
+  const con = WsConnectionManager.getCon(id);
 
   const emit = (eventName: EventName, payload?: any) => con?.emit(eventName, payload);
 

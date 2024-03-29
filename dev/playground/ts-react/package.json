@@ -9,11 +9,13 @@
   },
   "private": true,
   "dependencies": {
+    "@ts-fullstack-template/use-web-socket": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*",
+    "@types/node": "^20.11.20",
     "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react-swc": "^3.6.0",

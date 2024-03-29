@@ -1,8 +1,12 @@
 {
   "name": "ts-fullstack-template",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "author": {
+    "name": "Ryuichi Nishi",
+    "email": "ryucihi.nishi24@gmail.com",
+    "url": "https://github.com/ryuichi24"
+  },
   "type": "module",
   "private": true,
   "workspaces": {
@@ -16,19 +20,11 @@
     "**"
   ],
   "scripts": {
-    "dev": "yarn build:native:electron && dotenv -e ./.env -c local -- turbo run dev --filter=\\{\"./apps/**/*\"\\}",
-    "dev:web": "yarn build:native:node && dotenv -e ./.env -c local -v DEV_TYPE=web -- turbo run dev:web --filter=\\{\"./apps/**/*\"\\}",
-    "build": "turbo run build",
+    "dev": "dotenv -e ./.env -c local -- turbo run dev --filter=\\{\"./apps/**/*\"\\}",
+    "dev:web": "dotenv -e ./.env -c local -- turbo run dev:web --filter=\\{\"./apps/**/*\"\\}",
+    "build": "dotenv -e ./.env -c local -- turbo run build --filter=!\\{\"./dev/**/*\"\\}",
     "clean": "node ./scripts/clean.js . node_modules dist .turbo build-info.json",
-    "build:native:node": "yarn workspace @ts-fullstack-template/native build:node",
-    "build:native:electron": "yarn workspace @ts-fullstack-template/native build:electron",
-    "build:native:initial": "yarn workspace @ts-fullstack-template/native build:initial",
-    "postinstall": "yarn build:native:initial"
-  },
-  "engines": {
-    "npm": "please-use-yarn",
-    "node": ">=v20.0.0",
-    "yarn": ">=v1.22.19"
+    "postinstall": ""
   },
   "devDependencies": {
     "dotenv-cli": "^7.3.0",

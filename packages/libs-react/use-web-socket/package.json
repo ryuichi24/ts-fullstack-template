@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "type": "module",
   "files": [
     "/dist"
   ],
@@ -14,12 +19,16 @@
     "postinstall": "yarn build"
   },
   "dependencies": {
-    "@ts-fullstack-template/web-socket": "*",
-    "react": "^18.2.0"
+    "@ts-fullstack-template/web-socket": "*"
   },
   "devDependencies": {
     "@ts-fullstack-template/tsconfig": "*",
+    "@types/node": "^20.11.20",
     "@types/react": "^18.2.58",
     "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
   }
 }

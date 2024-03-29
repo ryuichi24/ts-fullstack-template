@@ -4,8 +4,8 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
-    "dev:web": "vite",
+    "dev": "cross-env vite",
+    "dev:web": "cross-env DEV_TYPE=web vite",
     "build": "tsc && vite build"
   },
   "private": true,
@@ -21,7 +21,8 @@
     "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react-swc": "^3.6.0",
+    "cross-env": "^7.0.3",
     "typescript": "^5.3.3",
-    "vite": "^5.1.4"
+    "vite": "^5.2.6"
   }
 }

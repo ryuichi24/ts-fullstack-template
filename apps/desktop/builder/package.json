@@ -1,0 +1,36 @@
+{
+  "name": "@ts-fullstack-template/desktop-builder",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Ryuichi Nishi",
+    "email": "ryucihi.nishi24@gmail.com",
+    "url": "https://github.com/ryuichi24"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "yarn rebuild:electron",
+    "dev:web": "yarn rebuild:node",
+    "build": "yarn build:package-json && yarn install && tsx scripts/rebuild.ts && yarn aggregate && tsx scripts/build.ts",
+    "aggregate": "tsx scripts/aggregate-artifacts.ts",
+    "rebuild:node": "cross-env BUILD_MODE=node tsx scripts/rebuild-dev",
+    "rebuild:electron": "cross-env BUILD_MODE=electron tsx scripts/rebuild-dev",
+    "rebuild:initial": "cross-env BUILD_MODE=initial tsx scripts/rebuild-dev",
+    "postinstall": "yarn rebuild:initial",
+    "build:package-json": "tsx scripts/make-production-pakcage-json.ts"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.6.0",
+    "@ts-fullstack-template/tsconfig": "*",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron-builder": "^24.13.3",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@ts-fullstack-template/desktop-main": "*",
+    "@ts-fullstack-template/desktop-renderer": "*",
+    "@ts-fullstack-template/server": "*"
+  }
+}

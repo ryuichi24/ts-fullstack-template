@@ -1,7 +1,9 @@
 import http from "http";
 import net from "net";
+import path from "path";
 import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
 import { WebSocketServer } from "@ts-fullstack-template/web-socket/server";
+import Database from "better-sqlite3";
 
 global.webSocket = null;
 global.pEvtEmitter = null;
@@ -45,6 +47,7 @@ async function main() {
 
       console.log("Web Socket connected as a child process");
       global.pEvtEmitter?.emit("msg:ws-connected");
+      new Database(path.join(process.env.ELECTRON_USER_DATA_PATH ?? "", "app.db"));
 
       // propagate event from main process
       global.pEvtEmitter?.on("msg:quitting-requested", () => {
@@ -59,7 +62,9 @@ async function main() {
     sock.on("msg:greeting-from-client", (payload) => {
       console.log("got a message from client ", { payload });
 
-      sock.emit("msg:hello-from-server", { server: "ws" });
+      sock.emit("msg:hello-from-server", {
+        server: "ws",
+      });
     });
   });
 }

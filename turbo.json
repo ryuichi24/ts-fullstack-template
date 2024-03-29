@@ -8,11 +8,53 @@
       "cache": false,
       // https://github.com/vercel/turbo/issues/7279#issuecomment-1930454699
       // https://turbo.build/repo/docs/reference/configuration#persistent
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["^@ts-fullstack-template/desktop-builder#dev"]
     },
     "dev:web": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["^@ts-fullstack-template/desktop-builder#dev:web"]
+    },
+    "@ts-fullstack-template/desktop-builder#dev": {},
+    "@ts-fullstack-template/desktop-builder#dev:web": {},
+    "build": {
+      "dependsOn": ["^@ts-fullstack-template/desktop-builder#build"]
+    },
+    "@ts-fullstack-template/desktop-builder#build": {
+      "outputs": ["release/app/dist/**"],
+      "dependsOn": [
+        "^@ts-fullstack-template/desktop-main#build",
+        "^@ts-fullstack-template/desktop-renderer#build",
+        "^@ts-fullstack-template/server#build"
+      ]
+    },
+    "@ts-fullstack-template/desktop-main#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/process-event-emitter#build"]
+    },
+    "@ts-fullstack-template/desktop-renderer#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/use-web-socket#build"]
+    },
+    "@ts-fullstack-template/server#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/web-socket#build", "^@ts-fullstack-template/process-event-emitter#build"]
+    },
+    "@ts-fullstack-template/web-socket#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/esbuild-config#build"]
+    },
+    "@ts-fullstack-template/process-event-emitter#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/esbuild-config#build"]
+    },
+    "@ts-fullstack-template/use-web-socket#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/web-socket#build"]
+    },
+    "@ts-fullstack-template/esbuild-config#build": {
+      "outputs": ["dist/**"]
     }
   }
 }

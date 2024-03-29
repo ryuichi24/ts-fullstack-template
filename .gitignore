@@ -1,7 +1,6 @@
 node_modules
 dist
 release
-keymap.json
 ### macOS ###
 # General
 .DS_Store
@@ -10,7 +9,6 @@ keymap.json
 
 # Icon must end with two \r
 Icon
-
 
 # Thumbnails
 ._*
@@ -195,7 +193,7 @@ sketch
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
- 
+
 # Local History for Visual Studio Code
 .history/
 
