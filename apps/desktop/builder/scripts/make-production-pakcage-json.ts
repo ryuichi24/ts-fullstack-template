@@ -1,6 +1,8 @@
 import path from "path";
 import fs from "fs";
+
 import { dependencies } from "../package.json";
+import { isNativeModule, readPackageJsonFile } from "./util.js";
 
 const rootPath = process.env.INIT_CWD;
 const projectRootPath = process.env.PROJECT_CWD;
@@ -21,6 +23,7 @@ const productionPackageJson = {
   description: projectRootPackageJson.description,
   license: projectRootPackageJson.license,
   dependencies: {},
+  publishMeta: projectRootPackageJson.publishMeta,
 };
 
 const nodeModulesPath = path.join(rootPath, "node_modules");
@@ -56,31 +59,3 @@ if (!fs.existsSync(productionAppPath)) {
 }
 const productionPackageJsonPath = path.join(productionAppPath, "package.json");
 fs.writeFileSync(productionPackageJsonPath, JSON.stringify(productionPackageJson, null, 2), "utf8");
-
-type PackageJson = {
-  name: string;
-  version?: string;
-  description?: string;
-  license?: string;
-  author?: string | { name?: string; email?: string; url?: string };
-  dependencies?: Record<string, string>;
-  devDependencies?: Record<string, string>;
-};
-
-function readPackageJsonFile(path: string) {
-  const raw = fs.readFileSync(path, {
-    encoding: "utf8",
-  });
-  return JSON.parse(raw) as PackageJson;
-}
-
-function isNativeModule(packageJson: PackageJson) {
-  const NATIVE_BUILD_TOOLS = ["bindings", "node-addon-api", "prebuild", "nan", "node-pre-gyp", "node-gyp-build"];
-  if (!packageJson.dependencies && !packageJson.devDependencies) {
-    throw new Error('Cannot validate the package since there is no "dependencies" nor "devDependencies"');
-  }
-
-  return NATIVE_BUILD_TOOLS.some((tool) => {
-    return Reflect.has(packageJson.dependencies ?? {}, tool) || Reflect.has(packageJson.devDependencies ?? {}, tool);
-  });
-}

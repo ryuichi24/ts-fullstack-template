@@ -31,5 +31,17 @@
     "dotenv-cli": "^7.3.0",
     "turbo": "^1.12.4"
   },
-  "packageManager": "yarn@3.6.4"
+  "packageManager": "yarn@3.6.4",
+  "publishMeta": {
+    "appId": "com.ryuichi24.tsfullstack",
+    "appName": "TsFullStackElectronApp",
+    "copyright": "Copyright © 2024 com.ryuichi24.tsfullstack",
+    "provider": {
+      "github": {
+        "owner": "ryuichi24",
+        "repositoryName": "ts-fullstack-template",
+        "private": true
+      }
+    }
+  }
 }
