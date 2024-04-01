@@ -23,6 +23,7 @@
     "dev": "dotenv -e ./.env -c local -- turbo run dev --filter=\\{\"./apps/**/*\"\\}",
     "dev:web": "dotenv -e ./.env -c local -- turbo run dev:web --filter=\\{\"./apps/**/*\"\\}",
     "build": "dotenv -e ./.env -c local -- turbo run build --filter=!\\{\"./dev/**/*\"\\}",
+    "build:debug": "dotenv -e ./.env -c local -- turbo run build:debug --filter=!\\{\"./dev/**/*\"\\}",
     "clean": "node ./scripts/clean.js . node_modules dist .turbo build-info.json",
     "postinstall": ""
   },

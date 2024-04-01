@@ -9,10 +9,12 @@ await buildAsMain({
     js: 'import { createRequire } from "module"; import url from "url"; const require = createRequire(import.meta.url); const __filename = url.fileURLToPath(import.meta.url); const __dirname = url.fileURLToPath(new URL(".", import.meta.url));',
   },
   treeShaking: true,
+  sourcemap: process.env.NODE_ENV === "debug" ? true : false,
 });
 
 await buildAsPreload({
   entryPoints: ["./src/preload.ts"],
   outfile: "./dist/preload.js",
   tsconfig: "./tsconfig.preload.json",
+  sourcemap: process.env.NODE_ENV === "debug" ? true : false,
 });

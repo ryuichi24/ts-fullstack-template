@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "Electron: Main",
+      "type": "node",
+      "request": "launch",
+      "env": { "NODE_ENV": "debug", "WS_DEBUGGER_PORT": "3001" },
+      "envFile": "${workspaceFolder}/.env.local",
+      "cwd": "${workspaceFolder}/apps/desktop/main",
+      "runtimeExecutable": "${workspaceFolder}/apps/desktop/main/node_modules/.bin/electron",
+      "runtimeArgs": ["--enable-logging", "--remote-debugging-port=9223"],
+      "args": ["."],
+      "outputCapture": "std",
+      "sourceMaps": true,
+      "autoAttachChildProcesses": true,
+      "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+      "preLaunchTask": "npm: build:debug"
+    },
+    {
+      "name": "Electron: Renderer",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9223,
+      "webRoot": "${workspaceFolder}/apps/desktop/renderer/src",
+      "timeout": 60000,
+      "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
+    },
+    {
+      "name": "Electron: Web Socket Background Server (child process)",
+      "type": "node",
+      "request": "attach",
+      "port": 3001,
+      "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+      "timeout": 60000
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Electron: Debug",
+      "configurations": [
+        "Electron: Main",
+        "Electron: Renderer",
+        "Electron: Web Socket Background Server (child process)"
+      ]
+    }
+  ]
+}

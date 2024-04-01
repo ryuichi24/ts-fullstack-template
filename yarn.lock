@@ -897,6 +897,7 @@ __metadata:
   resolution: "@ts-fullstack-template/playground-ts-node@workspace:dev/playground/ts-node"
   dependencies:
     "@ts-fullstack-template/tsconfig": "*"
+    "@types/node": ^20.11.20
     concurrently: ^8.2.2
     typescript: ^5.3.3
   languageName: unknown
@@ -964,6 +965,8 @@ __metadata:
     "@ts-fullstack-template/web-socket": "*"
     "@types/node": ^20.11.20
     "@types/react": ^18.2.58
+    react: ^18.2.0
+    react-dom: ^18.2.0
     typescript: ^5.3.3
   peerDependencies:
     react: "*"

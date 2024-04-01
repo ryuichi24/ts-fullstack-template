@@ -22,25 +22,42 @@
       "dependsOn": ["^@ts-fullstack-template/desktop-builder#build"]
     },
     "@ts-fullstack-template/desktop-builder#build": {
-      "outputs": ["release/app/dist/**"],
+      "outputs": ["release/**"],
       "dependsOn": [
         "^@ts-fullstack-template/desktop-main#build",
         "^@ts-fullstack-template/desktop-renderer#build",
         "^@ts-fullstack-template/server#build"
       ]
     },
+    "@ts-fullstack-template/desktop-builder#rebuild:electron": {},
+    // main
     "@ts-fullstack-template/desktop-main#build": {
       "outputs": ["dist/**"],
       "dependsOn": ["^@ts-fullstack-template/process-event-emitter#build"]
     },
+    "@ts-fullstack-template/desktop-main#build:debug": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/process-event-emitter#build"]
+    },
+    // renderer
     "@ts-fullstack-template/desktop-renderer#build": {
       "outputs": ["dist/**"],
       "dependsOn": ["^@ts-fullstack-template/use-web-socket#build"]
     },
+    "@ts-fullstack-template/desktop-renderer#build:debug": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/use-web-socket#build"]
+    },
+    // server
     "@ts-fullstack-template/server#build": {
       "outputs": ["dist/**"],
       "dependsOn": ["^@ts-fullstack-template/web-socket#build", "^@ts-fullstack-template/process-event-emitter#build"]
     },
+    "@ts-fullstack-template/server#build:debug": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^@ts-fullstack-template/web-socket#build", "^@ts-fullstack-template/process-event-emitter#build"]
+    },
+    // lib
     "@ts-fullstack-template/web-socket#build": {
       "outputs": ["dist/**"],
       "dependsOn": ["^@ts-fullstack-template/esbuild-config#build"]
@@ -53,8 +70,18 @@
       "outputs": ["dist/**"],
       "dependsOn": ["^@ts-fullstack-template/web-socket#build"]
     },
+    // config
     "@ts-fullstack-template/esbuild-config#build": {
       "outputs": ["dist/**"]
+    },
+    // util
+    "build:debug": {
+      "dependsOn": [
+        "^@ts-fullstack-template/desktop-main#build:debug",
+        "^@ts-fullstack-template/desktop-renderer#build:debug",
+        "^@ts-fullstack-template/server#build:debug",
+        "^@ts-fullstack-template/desktop-builder#rebuild:electron"
+      ]
     }
   }
 }

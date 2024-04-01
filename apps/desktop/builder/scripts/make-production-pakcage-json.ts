@@ -1,6 +1,5 @@
 import path from "path";
 import fs from "fs";
-import { rebuild } from "@electron/rebuild";
 import { dependencies } from "../package.json";
 
 const rootPath = process.env.INIT_CWD;
@@ -57,8 +56,6 @@ if (!fs.existsSync(productionAppPath)) {
 }
 const productionPackageJsonPath = path.join(productionAppPath, "package.json");
 fs.writeFileSync(productionPackageJsonPath, JSON.stringify(productionPackageJson, null, 2), "utf8");
-
-// rebuild({ buildPath: "", electronVersion: "" });
 
 type PackageJson = {
   name: string;

@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "yarn build && concurrently \"yarn build:watch\" \"yarn electron:start\"",
     "build": "tsc && tsx scripts/build.ts",
+    "build:debug": "tsc && cross-env NODE_ENV=debug tsx scripts/build.ts",
     "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
     "electron:start": "electron dist/index.js",
     "electron:watch": "export NODE_OPTIONS='--experimental-import-meta-resolve' && electron dist/index.js"

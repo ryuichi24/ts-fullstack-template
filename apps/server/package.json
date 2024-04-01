@@ -1,7 +1,7 @@
 {
   "name": "@ts-fullstack-template/server",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "dist/index.ts",
   "license": "MIT",
   "type": "module",
   "private": true,
@@ -9,6 +9,7 @@
     "dev": "yarn build:watch",
     "dev:web": "yarn build && concurrently \"yarn build:watch\" \"yarn node:watch\"",
     "build": "tsc && tsx scripts/build.ts",
+    "build:debug": "tsc && cross-env NODE_ENV=debug tsx scripts/build.ts",
     "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
     "node:watch": "node --watch dist/index.js"
   },

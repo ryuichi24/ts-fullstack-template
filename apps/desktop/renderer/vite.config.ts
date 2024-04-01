@@ -7,9 +7,9 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, envFileDir, "TS");
   return {
     root: "src",
-    base: mode === "production" ? "./" : "/",
+    base: mode === "production" || mode === "debug" ? "./" : "/",
     build: {
-      sourcemap: false,
+      sourcemap: mode === "debug" ? true : false,
       outDir: path.resolve(process.cwd(), "dist"),
     },
     server: {
