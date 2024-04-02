@@ -9,7 +9,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        # disable mac build due to no apple developer account
+        # os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [windows-latest, ubuntu-latest]
 
     steps:
       - name: Checkout git repo
