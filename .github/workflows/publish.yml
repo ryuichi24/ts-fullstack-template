@@ -41,7 +41,7 @@ jobs:
           yarn build:publish
 
       - name: Publish releases for windows and linux
-        if: ${{ matrix.os != 'macos-latest' }}
+        if: ${{ matrix.os == 'windows-latest' || matrix.os == 'ubuntu-latest' }}
         env:
           # to publish an application to github releases
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
