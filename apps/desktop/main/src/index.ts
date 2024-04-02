@@ -20,6 +20,7 @@ const rendererFilePath = isDebug
 const backgroundServerPath = isDev
   ? require.resolve("@ts-fullstack-template/server/dist/index.js")
   : path.resolve(__dirname, "..", "server", "index.js");
+const ASSETS_PATH = app.isPackaged ? path.join(process.resourcesPath, "assets") : path.join(".", "assets");
 
 /**
  * Initialize custom global variables
@@ -35,12 +36,22 @@ async function main() {
 
 main().catch(shutDown);
 
+function getOSIcon() {
+  const osIconPath = isMac
+    ? path.join("mac", "logo.icns")
+    : isWindows
+    ? path.join("windows", "logo.ico")
+    : path.join("linux", "logo.png");
+  return path.join(ASSETS_PATH, osIconPath);
+}
+
 async function createMainWindow(args?: string[]) {
   global.mainWindow = new BrowserWindow({
     minWidth: 1408,
     minHeight: 848,
     width: 1408,
     height: 848 + (isDev ? 630 : 0),
+    icon: getOSIcon(),
     resizable: isDev,
     webPreferences: {
       nodeIntegration: false,

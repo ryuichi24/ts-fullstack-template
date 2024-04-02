@@ -16,8 +16,12 @@
       "persistent": true,
       "dependsOn": ["^@ts-fullstack-template/desktop-builder#dev:web"]
     },
-    "@ts-fullstack-template/desktop-builder#dev": {},
-    "@ts-fullstack-template/desktop-builder#dev:web": {},
+    "@ts-fullstack-template/desktop-builder#dev": {
+      "cache": false
+    },
+    "@ts-fullstack-template/desktop-builder#dev:web": {
+      "cache": false
+    },
     "build": {
       "dependsOn": ["^@ts-fullstack-template/desktop-builder#build"]
     },

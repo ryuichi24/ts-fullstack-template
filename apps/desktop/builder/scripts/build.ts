@@ -15,6 +15,7 @@ if (!rootPath) {
 }
 
 const prodPackageJson = readPackageJsonFile(path.join(rootPath, "release", "app", "package.json"));
+const assetsPath = path.join(rootPath, "release", "app", "dist", "main", "assets");
 
 const isMac = process.platform === "darwin";
 const isWindows = process.platform === "win32";
@@ -30,7 +31,8 @@ let builderConfig: builder.Configuration = {
     app: path.join(rootPath, "release", "app"),
     output: "release/build/${version}",
   },
-  files: ["dist", "node_modules", "package.json"],
+  files: ["dist", "node_modules", "package.json", "!dist/main/assets/**"],
+  extraResources: [path.join(rootPath, "release", "app", "dist", "main", "assets", "**")],
   npmRebuild: false,
   electronVersion: devDependencies.electron.replace("^", ""),
   publish: [
@@ -50,7 +52,7 @@ if (isMac) {
   builderConfig = {
     ...builderConfig,
     mac: {
-      // icon: "dist/assets/images/app-icon.png",
+      icon: path.join(assetsPath, "logo", "mac", "logo.icns"),
       target: {
         target: "default",
         arch: ["arm64", "x64"],
@@ -77,6 +79,7 @@ if (isWindows) {
   builderConfig = {
     ...builderConfig,
     win: {
+      icon: path.join(assetsPath, "logo", "windows", "logo.ico"),
       target: ["nsis"],
     },
   };
@@ -86,6 +89,7 @@ if (isLinux) {
   builderConfig = {
     ...builderConfig,
     linux: {
+      icon: path.join(assetsPath, "logo", "windows", "logo.ico"),
       target: ["AppImage"],
     },
   };
