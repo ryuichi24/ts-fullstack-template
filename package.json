@@ -13,7 +13,8 @@
     "packages": [
       "apps/**/*",
       "dev/**/*",
-      "packages/**/*"
+      "packages/**/*",
+      "!apps/desktop/builder/release/app"
     ]
   },
   "nohoist": [

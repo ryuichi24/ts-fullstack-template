@@ -11,8 +11,8 @@
   "scripts": {
     "dev": "yarn rebuild:electron",
     "dev:web": "yarn rebuild:node",
-    "build:publish": "yarn clean:release && yarn build:package-json && yarn install && tsx scripts/rebuild.ts && yarn aggregate && cross-env ELECTRON_PUBLISH=true tsx scripts/build.ts",
-    "build:local": "yarn clean:release && yarn build:package-json && yarn install && tsx scripts/rebuild.ts && yarn aggregate && cross-env ELECTRON_PUBLISH=false tsx scripts/build.ts",
+    "build:publish": "yarn clean:release && yarn build:package-json && yarn install --focus && tsx scripts/rebuild.ts && yarn aggregate && cross-env ELECTRON_PUBLISH=true tsx scripts/build.ts",
+    "build:local": "yarn clean:release && yarn build:package-json && yarn install --focus && tsx scripts/rebuild.ts && yarn aggregate && cross-env ELECTRON_PUBLISH=false tsx scripts/build.ts",
     "aggregate": "tsx scripts/aggregate-artifacts.ts",
     "rebuild:node": "cross-env BUILD_MODE=node tsx scripts/rebuild-dev",
     "rebuild:electron": "cross-env BUILD_MODE=electron tsx scripts/rebuild-dev",
