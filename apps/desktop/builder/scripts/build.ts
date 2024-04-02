@@ -48,14 +48,14 @@ let builderConfig: builder.Configuration = {
   ],
 };
 
-if (isMac) {
+if (isMac && (process.arch === "arm64" || process.arch === "x64")) {
   builderConfig = {
     ...builderConfig,
     mac: {
       icon: path.join(assetsPath, "logo", "mac", "logo.icns"),
       target: {
         target: "default",
-        arch: ["arm64", "x64"],
+        arch: [process.arch],
       },
     },
     dmg: {

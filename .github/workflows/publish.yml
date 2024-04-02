@@ -9,9 +9,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # disable mac build due to no apple developer account
-        # os: [macos-latest, windows-latest, ubuntu-latest]
-        os: [windows-latest, ubuntu-latest]
+        # macos-13 => intel, macos-14 => ARM
+        os: [macos-13, macos-14, windows-latest, ubuntu-latest]
 
     steps:
       - name: Checkout git repo
@@ -28,12 +27,12 @@ jobs:
           yarn install
 
       - name: Publish release for mac
-        if: ${{ matrix.os == 'macos-latest' }}
+        if: ${{ matrix.os == 'macos-13' || matrix.os == 'macos-14' }}
         env:
           # auto updates signing for mac app
           # see for more info: https://www.electron.build/code-signing.html
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_ID_PASS: ${{ secrets.APPLE_ID_PASS }}
+          # APPLE_ID: ${{ secrets.APPLE_ID }}
+          # APPLE_ID_PASS: ${{ secrets.APPLE_ID_PASS }}
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
           # to publish an application to github releases
