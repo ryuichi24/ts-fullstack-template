@@ -1,0 +1,44 @@
+name: Publishing
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  publish:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: yarn
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Add certificate in keychain for code signing
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: |
+          echo 'adding certificate...'
+
+      - name: Publish releases
+        env:
+          # auto updates signing for mac app
+          # see for more info: https://www.electron.build/code-signing.html
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASS: ${{ secrets.APPLE_ID_PASS }}
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+          # to publish an application to github releases
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          yarn build:publish

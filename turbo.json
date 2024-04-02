@@ -22,10 +22,22 @@
     "@ts-fullstack-template/desktop-builder#dev:web": {
       "cache": false
     },
-    "build": {
-      "dependsOn": ["^@ts-fullstack-template/desktop-builder#build"]
+    // builder
+    "build:publish": {
+      "dependsOn": ["^@ts-fullstack-template/desktop-builder#build:publish"]
     },
-    "@ts-fullstack-template/desktop-builder#build": {
+    "build:local": {
+      "dependsOn": ["^@ts-fullstack-template/desktop-builder#build:local"]
+    },
+    "@ts-fullstack-template/desktop-builder#build:publish": {
+      "outputs": ["release/**"],
+      "dependsOn": [
+        "^@ts-fullstack-template/desktop-main#build",
+        "^@ts-fullstack-template/desktop-renderer#build",
+        "^@ts-fullstack-template/server#build"
+      ]
+    },
+    "@ts-fullstack-template/desktop-builder#build:local": {
       "outputs": ["release/**"],
       "dependsOn": [
         "^@ts-fullstack-template/desktop-main#build",

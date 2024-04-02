@@ -96,6 +96,6 @@ if (isLinux) {
 }
 
 builder.build({
-  publish: "never",
+  publish: process.env.ELECTRON_PUBLISH === "true" ? "always" : "never",
   config: builderConfig,
 });
