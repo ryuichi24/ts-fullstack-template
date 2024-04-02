@@ -89,7 +89,7 @@ if (isLinux) {
   builderConfig = {
     ...builderConfig,
     linux: {
-      icon: path.join(assetsPath, "logo", "windows", "logo.png"),
+      icon: path.join(assetsPath, "logo", "linux", "logo.png"),
       target: ["AppImage"],
     },
   };
