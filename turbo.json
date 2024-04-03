@@ -49,20 +49,31 @@
     // main
     "@ts-fullstack-template/desktop-main#build": {
       "outputs": ["dist/**"],
-      "dependsOn": ["^@ts-fullstack-template/process-event-emitter#build"]
+      "dependsOn": [
+        "^@ts-fullstack-template/process-event-emitter#build",
+        "@ts-fullstack-template/desktop-contract#build"
+      ]
     },
     "@ts-fullstack-template/desktop-main#build:debug": {
       "outputs": ["dist/**"],
-      "dependsOn": ["^@ts-fullstack-template/process-event-emitter#build"]
+      "dependsOn": [
+        "^@ts-fullstack-template/process-event-emitter#build",
+        "@ts-fullstack-template/desktop-contract#build"
+      ]
+    },
+    // contract
+    "@ts-fullstack-template/desktop-contract#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": []
     },
     // renderer
     "@ts-fullstack-template/desktop-renderer#build": {
       "outputs": ["dist/**"],
-      "dependsOn": ["^@ts-fullstack-template/use-web-socket#build"]
+      "dependsOn": ["^@ts-fullstack-template/use-web-socket#build", "@ts-fullstack-template/desktop-contract#build"]
     },
     "@ts-fullstack-template/desktop-renderer#build:debug": {
       "outputs": ["dist/**"],
-      "dependsOn": ["^@ts-fullstack-template/use-web-socket#build"]
+      "dependsOn": ["^@ts-fullstack-template/use-web-socket#build", "@ts-fullstack-template/desktop-contract#build"]
     },
     // server
     "@ts-fullstack-template/server#build": {
