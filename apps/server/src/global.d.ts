@@ -5,6 +5,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       ELECTRON_USER_DATA_PATH?: string;
+      NODE_ENV: "production" | "development" | "debug";
     }
   }
   var webSocket: WebSocketServer | null;
