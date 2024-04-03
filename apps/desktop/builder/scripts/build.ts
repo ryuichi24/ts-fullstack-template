@@ -52,7 +52,7 @@ if (isMac && (process.arch === "arm64" || process.arch === "x64")) {
   builderConfig = {
     ...builderConfig,
     mac: {
-      icon: path.join(assetsPath, "logo", "mac", "logo.icns"),
+      icon: path.join(assetsPath, "icons", "logo", "mac", "logo.icns"),
       target: {
         target: "default",
         arch: [process.arch],
@@ -79,7 +79,7 @@ if (isWindows) {
   builderConfig = {
     ...builderConfig,
     win: {
-      icon: path.join(assetsPath, "logo", "windows", "logo.ico"),
+      icon: path.join(assetsPath, "icons", "logo", "windows", "logo.ico"),
       target: ["nsis"],
     },
   };
@@ -89,7 +89,7 @@ if (isLinux) {
   builderConfig = {
     ...builderConfig,
     linux: {
-      icon: path.join(assetsPath, "logo", "linux", "logo.png"),
+      icon: path.join(assetsPath, "icons", "logo", "linux", "logo.png"),
       target: ["AppImage"],
     },
   };

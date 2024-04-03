@@ -13,8 +13,6 @@ const isDebug = process.env.NODE_ENV === "debug";
 const isMac = process.platform === "darwin";
 const isWindows = process.platform === "win32";
 const isLinux = process.platform === "linux";
-// NOTE: the returned absolute file path cannot be used for child_process.fork
-// const backgroundServerPath = await import.meta.resolve("@ts-fullstack-template/server/dist/index.js");
 
 const preloadScriptPath = path.resolve(__dirname, "preload.js");
 const rendererDevServerURL = `http://localhost:${process.env.TS_DESKTOP_RENDERER_DEV_SERVER_PORT || 5555}`;
@@ -36,19 +34,14 @@ global.backgroundServer = null;
 async function main() {
   await app.whenReady();
   const port = await initBGServer(backgroundServerPath);
-  createMainWindow([port.toString()]).catch(shutDown);
+  createMainWindow([port.toString()]);
+
+  app.on("quit", (event) => {
+    global.backgroundServer?.close();
+  });
 }
 
-main().catch(shutDown);
-
-function getOSIcon() {
-  const osIconPath = isMac
-    ? path.join("mac", "logo.icns")
-    : isWindows
-    ? path.join("windows", "logo.ico")
-    : path.join("linux", "logo.png");
-  return path.join(ASSETS_PATH, osIconPath);
-}
+main();
 
 async function createMainWindow(args?: string[]) {
   global.mainWindow = new BrowserWindow({
@@ -78,6 +71,15 @@ async function createMainWindow(args?: string[]) {
   autoUpdater.checkForUpdatesAndNotify();
 }
 
+function getOSIcon() {
+  const osIconPath = isMac
+    ? path.join("mac", "logo.icns")
+    : isWindows
+    ? path.join("windows", "logo.ico")
+    : path.join("linux", "logo.png");
+  return path.join(ASSETS_PATH, "icons", "logo", osIconPath);
+}
+
 async function initBGServer(serverPath: string) {
   return new Promise<number>((res, rej) => {
     // NOTE: this pushed arg will be applied to an initialization of the child process by "fork" from "child_process" module.
@@ -87,7 +89,7 @@ async function initBGServer(serverPath: string) {
     // NOTE: the hot reload in dev does not work since the server project is started as child process
     // and the main process does not re-fork the process accordingly.
     const childProcess = fork(serverPath, [], {
-      env: { FORK: "1", ELECTRON_USER_DATA_PATH: app.getPath("userData") },
+      env: { FORK: "1", ELECTRON_USER_DATA_PATH: app.getPath("userData"), NODE_ENV: process.env.NODE_ENV },
       stdio: "inherit",
     });
     global.backgroundServer = new ProcessEventEmitter(childProcess);
@@ -100,17 +102,13 @@ async function initBGServer(serverPath: string) {
   });
 }
 
-function shutDown(error: Error) {
-  log.error("electron:event:shutDown:uncaughtException");
-  log.error(error);
-  global.mainWindow = null;
-  global.backgroundServer?.close();
-  process.exit(1);
-}
-
-process.on("uncaughtException", function (err) {
-  log.error("electron:event:uncaughtException");
+function terminateOnErr(err: Error) {
+  log.error("electron:err");
   log.error(err);
   log.error(err.stack);
+  global.mainWindow = null;
+  global.backgroundServer?.close();
   app.quit();
-});
+}
+
+process.on("uncaughtException", terminateOnErr);
