@@ -24,9 +24,15 @@ jobs:
 
       # NOTE: necessary for rebuilding native modules, see https://github.com/actions/runner/issues/2958
       - name: Install setuptools
-        if: ${{ matrix.os != 'windows-latest' }}
+        if: ${{ matrix.os != 'windows-latest' && matrix.os != 'macos-14' }}
         run: |
-          sudo -H python -m pip install setuptools
+          sudo -H pip install setuptools
+
+      # NOTE: installing "setuptools" will not fix the issue in "macos-14" runner, downgrade the python version which has "distutils" by default
+      - uses: actions/setup-python@v5
+        if: ${{ matrix.os != 'macos-14' }}
+        with:
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
