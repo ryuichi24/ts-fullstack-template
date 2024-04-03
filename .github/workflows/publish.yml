@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # macos-13 => intel, macos-14 => ARM
+        # macos-13 => intel, macos-14 => ARM see https://github.com/actions/runner-images
         os: [macos-13, macos-14, windows-latest, ubuntu-latest]
 
     steps:
