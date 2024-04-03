@@ -26,7 +26,7 @@ jobs:
       - name: Install setuptools
         if: ${{ matrix.os != 'windows-latest' }}
         run: |
-          sudo -H pip install setuptools
+          sudo -H pip3 install setuptools
 
       - name: Install dependencies
         run: |
