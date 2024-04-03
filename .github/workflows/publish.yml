@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: "lts/*"
 
+      # NOTE: necessary for rebuilding native modules
+      - name: Install setuptools
+        if: ${{ matrix.os != 'windows-latest' }}
+        run: |
+          sudo -H pip install setuptools
+
       - name: Install dependencies
         run: |
           yarn install
