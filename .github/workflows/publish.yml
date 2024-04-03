@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         # macos-13 => intel, macos-14 => ARM
-        os: [macos-13, macos-14, ubuntu-latest]
+        os: [macos-13, ubuntu-latest]
 
     steps:
       - name: Checkout git repo
