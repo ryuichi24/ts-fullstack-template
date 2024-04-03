@@ -11,10 +11,12 @@ if (!rootPath) {
 
 const productionAppPath = path.join(rootPath, "release", "app");
 
-execSync("yarn install", {
+console.log("installing production modules...");
+execSync("yarn config set enableImmutableInstalls false && yarn install", {
   cwd: productionAppPath,
   stdio: "inherit",
 });
+console.log("production module installation done!");
 
 console.log("rebuilding native modules...");
 await rebuild({ buildPath: productionAppPath, electronVersion: devDependencies.electron.replace("^", "") });
