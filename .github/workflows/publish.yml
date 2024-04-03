@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         # macos-13 => intel, macos-14 => ARM
-        os: [macos-13, ubuntu-latest]
+        os: [macos-13, windows-latest, ubuntu-latest]
 
     steps:
       - name: Checkout git repo
@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-            sudo -H pip install setuptools && yarn install
+          yarn install
 
       - name: Publish release for mac
         if: ${{ matrix.os == 'macos-13' || matrix.os == 'macos-14' }}
