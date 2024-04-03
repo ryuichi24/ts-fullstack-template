@@ -1,7 +1,12 @@
 import { fork } from "child_process";
 import path from "path";
 import { BrowserWindow, app } from "electron";
+import log from "electron-log";
+import { autoUpdater } from "electron-updater";
 import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
+
+log.transports.file.level = "info";
+autoUpdater.logger = log;
 
 const isDev = !app.isPackaged;
 const isDebug = process.env.NODE_ENV === "debug";
@@ -69,6 +74,8 @@ async function createMainWindow(args?: string[]) {
   } else {
     await global.mainWindow.loadFile(rendererFilePath);
   }
+
+  autoUpdater.checkForUpdatesAndNotify();
 }
 
 async function initBGServer(serverPath: string) {
@@ -94,8 +101,16 @@ async function initBGServer(serverPath: string) {
 }
 
 function shutDown(error: Error) {
-  console.error(error);
+  log.error("electron:event:shutDown:uncaughtException");
+  log.error(error);
   global.mainWindow = null;
   global.backgroundServer?.close();
   process.exit(1);
 }
+
+process.on("uncaughtException", function (err) {
+  log.error("electron:event:uncaughtException");
+  log.error(err);
+  log.error(err.stack);
+  app.quit();
+});

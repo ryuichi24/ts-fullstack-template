@@ -58,4 +58,7 @@ if (!fs.existsSync(productionAppPath)) {
   fs.mkdirSync(productionAppPath, { recursive: true });
 }
 const productionPackageJsonPath = path.join(productionAppPath, "package.json");
+const productionYarnLockPath = path.join(productionAppPath, "yarn.lock");
 fs.writeFileSync(productionPackageJsonPath, JSON.stringify(productionPackageJson, null, 2), "utf8");
+// NOTE: need to make an empty "yarn.lock: file to treat the package as completely separate one apart from the workspace packages
+fs.writeFileSync(productionYarnLockPath, "", "utf8");
