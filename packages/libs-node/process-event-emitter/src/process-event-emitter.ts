@@ -61,6 +61,6 @@ export class ProcessEventEmitter {
 
   private isChild() {
     // Only child process has "send" method
-    return !this._process.send;
+    return !!this._process.send;
   }
 }
