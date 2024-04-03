@@ -30,7 +30,7 @@ jobs:
 
       # NOTE: installing "setuptools" will not fix the issue in "macos-14" runner, downgrade the python version which has "distutils" by default
       - uses: actions/setup-python@v5
-        if: ${{ matrix.os != 'macos-14' }}
+        if: ${{ matrix.os == 'macos-14' }}
         with:
           python-version: "3.11"
 
