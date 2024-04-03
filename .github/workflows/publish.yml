@@ -22,11 +22,11 @@ jobs:
         with:
           node-version: "lts/*"
 
-      # NOTE: necessary for rebuilding native modules
+      # NOTE: necessary for rebuilding native modules, see https://github.com/actions/runner/issues/2958
       - name: Install setuptools
         if: ${{ matrix.os != 'windows-latest' }}
         run: |
-          sudo -H pip3 install setuptools
+          sudo -H python3 -m pip install setuptools
 
       - name: Install dependencies
         run: |
