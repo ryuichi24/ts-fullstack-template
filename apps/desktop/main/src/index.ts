@@ -1,6 +1,6 @@
 import { fork } from "child_process";
 import path from "path";
-import { BrowserWindow, app } from "electron";
+import { BrowserWindow, app, dialog } from "electron";
 import log from "electron-log";
 import { autoUpdater } from "electron-updater";
 import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
@@ -39,6 +39,38 @@ async function main() {
   app.on("quit", (event) => {
     global.backgroundServer?.close();
   });
+
+  app.on("window-all-closed", () => {
+    // Mac will not quit an app even though the window is closed
+    if (process.platform !== "darwin") {
+      app.quit();
+    }
+  });
+
+  app.on("activate", () => {
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createMainWindow([port.toString()]);
+    }
+  });
+
+  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.autoInstallOnAppQuit = false;
+  autoUpdater.addListener("update-downloaded", (event) => {
+    if (!global.mainWindow) return;
+
+    dialog
+      .showMessageBox(global.mainWindow, {
+        type: "info",
+        buttons: ["Restart", "Later"],
+        message: "UPDATE",
+        detail: "A new version has been downloaded. Restart the application to apply the updates.",
+      })
+      .then((result) => {
+        if (result.response === 0) autoUpdater.quitAndInstall();
+      });
+  });
 }
 
 main();
@@ -68,7 +100,9 @@ async function createMainWindow(args?: string[]) {
     await global.mainWindow.loadFile(rendererFilePath);
   }
 
-  autoUpdater.checkForUpdatesAndNotify();
+  global.mainWindow.on("closed", () => {
+    global.mainWindow = null;
+  });
 }
 
 function getOSIcon() {
