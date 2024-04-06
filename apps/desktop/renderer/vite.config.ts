@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
     build: {
       sourcemap: mode === "debug" ? true : false,
       outDir: path.resolve(process.cwd(), "dist"),
+      minify: mode === "debug" ? false : true,
     },
     server: {
       // electron app does not have to use browser

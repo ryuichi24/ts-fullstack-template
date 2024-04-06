@@ -8,7 +8,7 @@ import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitte
 log.transports.file.level = "info";
 autoUpdater.logger = log;
 
-const isDev = !app.isPackaged;
+const isDev = !app.isPackaged && process.env.NODE_ENV === "development";
 const isDebug = process.env.NODE_ENV === "debug";
 const isMac = process.platform === "darwin";
 const isWindows = process.platform === "win32";
@@ -20,9 +20,10 @@ const rendererDevServerURL = `http://localhost:${process.env.TS_DESKTOP_RENDERER
 const rendererFilePath = isDebug
   ? require.resolve("@ts-fullstack-template/desktop-renderer/dist/index.html")
   : path.resolve(__dirname, "..", "renderer", "index.html");
-const backgroundServerPath = isDev
-  ? require.resolve("@ts-fullstack-template/server/dist/index.js")
-  : path.resolve(__dirname, "..", "server", "index.js");
+const backgroundServerPath =
+  isDev || isDebug
+    ? require.resolve("@ts-fullstack-template/server/dist/index.js")
+    : path.resolve(__dirname, "..", "server", "index.js");
 const ASSETS_PATH = app.isPackaged ? path.join(process.resourcesPath, "assets") : path.join(".", "assets");
 
 /**
