@@ -23,6 +23,7 @@
   "scripts": {
     "dev": "dotenv -e ./.env -c local -- turbo run dev --filter=\\{\"./apps/**/*\"\\}",
     "dev:web": "dotenv -e ./.env -c local -- turbo run dev:web --filter=\\{\"./apps/**/*\"\\}",
+    "dev:server": "dotenv -e ./.env -c local -- turbo run @ts-fullstack-template/server#dev",
     "build:publish": "dotenv -e ./.env -c local -- turbo run build:publish --filter=!\\{\"./dev/**/*\"\\}",
     "build:local": "dotenv -e ./.env -c local -- turbo run build:local --filter=!\\{\"./dev/**/*\"\\}",
     "build:debug": "dotenv -e ./.env -c local -- turbo run build:debug --filter=!\\{\"./dev/**/*\"\\}",

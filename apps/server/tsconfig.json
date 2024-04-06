@@ -1,0 +1,6 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/node.bundle",
+  "compilerOptions": {},
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.scripts.json" }]
+}

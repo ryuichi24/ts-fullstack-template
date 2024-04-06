@@ -1,0 +1,24 @@
+{
+  "name": "@ts-fullstack-template/server",
+  "version": "1.0.0",
+  "main": "dist/index.ts",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "yarn build && concurrently \"yarn build:watch\" \"yarn node:watch\"",
+    "build": "tsc && tsx scripts/build.ts",
+    "build:debug": "tsc && cross-env NODE_ENV=debug tsx scripts/build.ts",
+    "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
+    "node:watch": "node --watch dist/index.js"
+  },
+  "devDependencies": {
+    "@ts-fullstack-template/esbuild-config": "*",
+    "@ts-fullstack-template/tsconfig": "*",
+    "@types/node": "^20.11.20",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  }
+}

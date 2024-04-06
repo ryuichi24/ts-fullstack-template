@@ -967,6 +967,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@ts-fullstack-template/server@workspace:apps/server":
+  version: 0.0.0-use.local
+  resolution: "@ts-fullstack-template/server@workspace:apps/server"
+  dependencies:
+    "@ts-fullstack-template/esbuild-config": "*"
+    "@ts-fullstack-template/tsconfig": "*"
+    "@types/node": ^20.11.20
+    concurrently: ^8.2.2
+    cross-env: ^7.0.3
+    tsx: ^4.7.1
+    typescript: ^5.3.3
+  languageName: unknown
+  linkType: soft
+
 "@ts-fullstack-template/tsconfig@*, @ts-fullstack-template/tsconfig@workspace:packages/configs/tsconfig":
   version: 0.0.0-use.local
   resolution: "@ts-fullstack-template/tsconfig@workspace:packages/configs/tsconfig"
