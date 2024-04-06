@@ -34,7 +34,7 @@
       "dependsOn": [
         "^@ts-fullstack-template/desktop-main#build",
         "^@ts-fullstack-template/desktop-renderer#build",
-        "^@ts-fullstack-template/server#build"
+        "^@ts-fullstack-template/desktop-bg-server#build"
       ]
     },
     "@ts-fullstack-template/desktop-builder#build:local": {
@@ -42,7 +42,7 @@
       "dependsOn": [
         "^@ts-fullstack-template/desktop-main#build",
         "^@ts-fullstack-template/desktop-renderer#build",
-        "^@ts-fullstack-template/server#build"
+        "^@ts-fullstack-template/desktop-bg-server#build"
       ]
     },
     "@ts-fullstack-template/desktop-builder#rebuild:electron": {},
@@ -76,11 +76,11 @@
       "dependsOn": ["^@ts-fullstack-template/use-web-socket#build", "@ts-fullstack-template/desktop-contract#build"]
     },
     // server
-    "@ts-fullstack-template/server#build": {
+    "@ts-fullstack-template/desktop-bg-server#build": {
       "outputs": ["dist/**"],
       "dependsOn": ["^@ts-fullstack-template/web-socket#build", "^@ts-fullstack-template/process-event-emitter#build"]
     },
-    "@ts-fullstack-template/server#build:debug": {
+    "@ts-fullstack-template/desktop-bg-server#build:debug": {
       "outputs": ["dist/**"],
       "dependsOn": ["^@ts-fullstack-template/web-socket#build", "^@ts-fullstack-template/process-event-emitter#build"]
     },
@@ -106,7 +106,7 @@
       "dependsOn": [
         "^@ts-fullstack-template/desktop-main#build:debug",
         "^@ts-fullstack-template/desktop-renderer#build:debug",
-        "^@ts-fullstack-template/server#build:debug",
+        "^@ts-fullstack-template/desktop-bg-server#build:debug",
         "^@ts-fullstack-template/desktop-builder#rebuild:electron"
       ]
     }

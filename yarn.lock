@@ -812,14 +812,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ts-fullstack-template/desktop-bg-server@*, @ts-fullstack-template/desktop-bg-server@workspace:apps/desktop/bg-server":
+  version: 0.0.0-use.local
+  resolution: "@ts-fullstack-template/desktop-bg-server@workspace:apps/desktop/bg-server"
+  dependencies:
+    "@ts-fullstack-template/esbuild-config": "*"
+    "@ts-fullstack-template/process-event-emitter": "*"
+    "@ts-fullstack-template/tsconfig": "*"
+    "@ts-fullstack-template/web-socket": "*"
+    "@types/better-sqlite3": ^7.6.9
+    "@types/node": ^20.11.20
+    better-sqlite3: ^8.6.0
+    concurrently: ^8.2.2
+    cross-env: ^7.0.3
+    tsx: ^4.7.1
+    typescript: ^5.3.3
+  languageName: unknown
+  linkType: soft
+
 "@ts-fullstack-template/desktop-builder@workspace:apps/desktop/builder":
   version: 0.0.0-use.local
   resolution: "@ts-fullstack-template/desktop-builder@workspace:apps/desktop/builder"
   dependencies:
     "@electron/rebuild": ^3.6.0
+    "@ts-fullstack-template/desktop-bg-server": "*"
     "@ts-fullstack-template/desktop-main": "*"
     "@ts-fullstack-template/desktop-renderer": "*"
-    "@ts-fullstack-template/server": "*"
     "@ts-fullstack-template/tsconfig": "*"
     concurrently: ^8.2.2
     cross-env: ^7.0.3
@@ -842,11 +860,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ts-fullstack-template/desktop-main@workspace:apps/desktop/main"
   dependencies:
+    "@ts-fullstack-template/desktop-bg-server": "*"
     "@ts-fullstack-template/desktop-contract": "*"
     "@ts-fullstack-template/desktop-renderer": "*"
     "@ts-fullstack-template/esbuild-config": "*"
     "@ts-fullstack-template/process-event-emitter": "*"
-    "@ts-fullstack-template/server": "*"
     "@ts-fullstack-template/tsconfig": "*"
     "@types/node": ^20.11.20
     concurrently: ^8.2.2
@@ -944,24 +962,6 @@ __metadata:
     "@ts-fullstack-template/tsconfig": "*"
     "@types/node": ^20.11.20
     concurrently: ^8.2.2
-    tsx: ^4.7.1
-    typescript: ^5.3.3
-  languageName: unknown
-  linkType: soft
-
-"@ts-fullstack-template/server@*, @ts-fullstack-template/server@workspace:apps/server":
-  version: 0.0.0-use.local
-  resolution: "@ts-fullstack-template/server@workspace:apps/server"
-  dependencies:
-    "@ts-fullstack-template/esbuild-config": "*"
-    "@ts-fullstack-template/process-event-emitter": "*"
-    "@ts-fullstack-template/tsconfig": "*"
-    "@ts-fullstack-template/web-socket": "*"
-    "@types/better-sqlite3": ^7.6.9
-    "@types/node": ^20.11.20
-    better-sqlite3: ^8.6.0
-    concurrently: ^8.2.2
-    cross-env: ^7.0.3
     tsx: ^4.7.1
     typescript: ^5.3.3
   languageName: unknown

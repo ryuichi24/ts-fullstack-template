@@ -1,5 +1,5 @@
 {
-  "name": "@ts-fullstack-template/server",
+  "name": "@ts-fullstack-template/desktop-bg-server",
   "version": "1.0.0",
   "main": "dist/index.ts",
   "license": "MIT",

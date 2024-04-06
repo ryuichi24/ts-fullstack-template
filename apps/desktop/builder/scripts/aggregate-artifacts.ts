@@ -18,7 +18,7 @@ const nodeModulesPath = path.join(rootPath, "node_modules");
 const releasePath = path.join(rootPath, "release", "app");
 const mainPath = path.join(nodeModulesPath, "@ts-fullstack-template/desktop-main");
 const rendererPath = path.join(nodeModulesPath, "@ts-fullstack-template/desktop-renderer");
-const serverPath = path.join(nodeModulesPath, "@ts-fullstack-template/server");
+const serverPath = path.join(nodeModulesPath, "@ts-fullstack-template/desktop-bg-server");
 
 await fs.cp(path.join(mainPath, "dist"), path.join(releasePath, "dist", "main"), {
   recursive: true,

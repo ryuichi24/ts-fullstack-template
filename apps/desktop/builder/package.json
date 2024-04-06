@@ -32,8 +32,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@ts-fullstack-template/desktop-bg-server": "*",
     "@ts-fullstack-template/desktop-main": "*",
-    "@ts-fullstack-template/desktop-renderer": "*",
-    "@ts-fullstack-template/server": "*"
+    "@ts-fullstack-template/desktop-renderer": "*"
   }
 }

@@ -22,7 +22,7 @@ const rendererFilePath = isDebug
   : path.resolve(__dirname, "..", "renderer", "index.html");
 const backgroundServerPath =
   isDev || isDebug
-    ? require.resolve("@ts-fullstack-template/server/dist/index.js")
+    ? require.resolve("@ts-fullstack-template/desktop-bg-server/dist/index.js")
     : path.resolve(__dirname, "..", "server", "index.js");
 const ASSETS_PATH = app.isPackaged ? path.join(process.resourcesPath, "assets") : path.join(".", "assets");
 
