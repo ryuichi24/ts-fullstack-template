@@ -53,6 +53,10 @@ async function main() {
       global.pEvtEmitter?.on("msg:quitting-requested", () => {
         sock.emit("msg:quitting-requested");
       });
+
+      sock.on("ws-msg:open-login-page", () => {
+        global.pEvtEmitter?.emit("p-msg:open-login-page");
+      });
     }
     if (!isChildProcess) {
       console.log("Web Socket connected as a non-child process");

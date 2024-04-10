@@ -16,5 +16,6 @@ declare global {
    * A main instance of the application window
    */
   var mainWindow: BrowserWindow | null;
+  var loginPageWindow: BrowserWindow | null;
   var backgroundServer: ProcessEventEmitter | null;
 }

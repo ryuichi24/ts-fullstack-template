@@ -5,8 +5,18 @@ import log from "electron-log";
 import { autoUpdater } from "electron-updater";
 import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitter";
 
+// logger
 log.transports.file.level = "info";
 autoUpdater.logger = log;
+
+// protocol see https://www.electronjs.org/docs/latest/tutorial/launch-app-from-url-in-another-app
+if (process.defaultApp) {
+  if (process.argv.length >= 2) {
+    app.setAsDefaultProtocolClient("tsfullstacktemp", process.execPath, [path.resolve(process.argv[1])]);
+  }
+} else {
+  app.setAsDefaultProtocolClient("tsfullstacktemp");
+}
 
 const isDev = !app.isPackaged && process.env.NODE_ENV === "development";
 const isDebug = process.env.NODE_ENV === "debug";
@@ -30,6 +40,7 @@ const ASSETS_PATH = app.isPackaged ? path.join(process.resourcesPath, "assets") 
  * Initialize custom global variables
  */
 global.mainWindow = null;
+global.loginPageWindow = null;
 global.backgroundServer = null;
 
 async function main() {
@@ -56,6 +67,7 @@ async function main() {
     }
   });
 
+  // auto updater
   autoUpdater.checkForUpdatesAndNotify();
   autoUpdater.autoInstallOnAppQuit = false;
   autoUpdater.addListener("update-downloaded", (event) => {
@@ -71,6 +83,32 @@ async function main() {
       .then((result) => {
         if (result.response === 0) autoUpdater.quitAndInstall();
       });
+  });
+
+  // bg server
+  global.backgroundServer?.on("p-msg:open-login-page", async () => {
+    if (global.loginPageWindow !== null) {
+      return;
+    }
+    global.loginPageWindow = new BrowserWindow({
+      minWidth: 350,
+      minHeight: 450,
+      width: 350,
+      height: 450,
+      icon: getOSIcon(),
+      resizable: true,
+      webPreferences: {
+        nodeIntegration: false,
+        contextIsolation: true,
+        preload: preloadScriptPath,
+      },
+    });
+
+    await global.loginPageWindow.loadURL("http://localhost:8989");
+
+    global.loginPageWindow.on("closed", () => {
+      global.mainWindow = null;
+    });
   });
 }
 
@@ -142,6 +180,7 @@ function terminateOnErr(err: Error) {
   log.error(err);
   log.error(err.stack);
   global.mainWindow = null;
+  global.loginPageWindow = null;
   global.backgroundServer?.close();
   app.quit();
 }

@@ -46,6 +46,10 @@ let builderConfig: builder.Configuration = {
       token: process.env.GH_TOKEN,
     },
   ],
+  protocols: {
+    name: "TS-Fullstack-Template-Protocol",
+    schemes: ["apptsfst"],
+  },
 };
 
 if (isMac && (process.arch === "arm64" || process.arch === "x64")) {

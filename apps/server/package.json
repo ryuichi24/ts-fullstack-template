@@ -15,10 +15,15 @@
   "devDependencies": {
     "@ts-fullstack-template/esbuild-config": "*",
     "@ts-fullstack-template/tsconfig": "*",
+    "@types/express": "^4.17.21",
     "@types/node": "^20.11.20",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "google-auth-library": "^9.7.0"
   }
 }

@@ -12,9 +12,20 @@ export const App = () => {
       console.log("got a msg from server", { payload });
     });
   }, [wsSocket.isConnected]);
+
+  const openLoginPageWindow = () => {
+    wsSocket.emit("ws-msg:open-login-page");
+  };
   return (
     <div>
-      <Layout>App</Layout>
+      <Layout>
+        <section>App</section>
+        <section>
+          <div>
+            <button onClick={openLoginPageWindow}>Sign In</button>
+          </div>
+        </section>
+      </Layout>
     </div>
   );
 };
