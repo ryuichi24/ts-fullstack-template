@@ -6,7 +6,7 @@ import { ProcessEventEmitter } from "@ts-fullstack-template/process-event-emitte
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      NODE_ENV: "production" | "development" | "debug";
+      NODE_ENV: "production" | "development" | "debug" | "test";
     }
   }
 }

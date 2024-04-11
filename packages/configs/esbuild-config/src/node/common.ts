@@ -5,5 +5,4 @@ export const commonNodeConfig: EsbuildOptions = {
   platform: "node",
   target: ["node20.4.0"],
   format: "cjs",
-  packages: "external",
 };

@@ -10,6 +10,7 @@ autoUpdater.logger = log;
 
 const isDev = !app.isPackaged && process.env.NODE_ENV === "development";
 const isDebug = process.env.NODE_ENV === "debug";
+const isTest = process.env.NODE_ENV === "test";
 const isMac = process.platform === "darwin";
 const isWindows = process.platform === "win32";
 const isLinux = process.platform === "linux";
@@ -17,11 +18,12 @@ const isLinux = process.platform === "linux";
 const preloadScriptPath = path.resolve(__dirname, "preload.js");
 const rendererDevServerURL = `http://localhost:${process.env.TS_DESKTOP_RENDERER_DEV_SERVER_PORT || 5555}`;
 // NOTE: while the main module type is ESM but `require` can be used since esbuild adds a script making a custom `require`
-const rendererFilePath = isDebug
-  ? require.resolve("@ts-fullstack-template/desktop-renderer/dist/index.html")
-  : path.resolve(__dirname, "..", "renderer", "index.html");
+const rendererFilePath =
+  isDebug || isTest
+    ? require.resolve("@ts-fullstack-template/desktop-renderer/dist/index.html")
+    : path.resolve(__dirname, "..", "renderer", "index.html");
 const backgroundServerPath =
-  isDev || isDebug
+  isDev || isDebug || isTest
     ? require.resolve("@ts-fullstack-template/desktop-bg-server/dist/index.js")
     : path.resolve(__dirname, "..", "server", "index.js");
 const ASSETS_PATH = app.isPackaged ? path.join(process.resourcesPath, "assets") : path.join(".", "assets");
@@ -92,7 +94,7 @@ async function createMainWindow(args?: string[]) {
     },
   });
 
-  if (isDev && !isDebug) {
+  if (isDev && !isDebug && !isTest) {
     global.mainWindow.webContents.openDevTools({
       mode: "bottom",
     });

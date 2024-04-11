@@ -552,6 +552,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@playwright/test@npm:^1.43.0":
+  version: 1.43.0
+  resolution: "@playwright/test@npm:1.43.0"
+  dependencies:
+    playwright: 1.43.0
+  bin:
+    playwright: cli.js
+  checksum: c7c0c6e8fde4e9dceea22d48384642b78c3d539fb0512edeaa581dc4dc07cedfd166dba92c5e9e69a378b7fd63362b142450dbdd5c9b65d76c4def162a5c470d
+  languageName: node
+  linkType: hard
+
 "@rollup/rollup-android-arm-eabi@npm:4.13.2":
   version: 4.13.2
   resolution: "@rollup/rollup-android-arm-eabi@npm:4.13.2"
@@ -894,6 +905,23 @@ __metadata:
     react-dom: ^18.2.0
     typescript: ^5.3.3
     vite: ^5.2.6
+  languageName: unknown
+  linkType: soft
+
+"@ts-fullstack-template/e2e@workspace:apps/e2e":
+  version: 0.0.0-use.local
+  resolution: "@ts-fullstack-template/e2e@workspace:apps/e2e"
+  dependencies:
+    "@playwright/test": ^1.43.0
+    "@ts-fullstack-template/desktop-main": "*"
+    "@ts-fullstack-template/esbuild-config": "*"
+    "@ts-fullstack-template/tsconfig": "*"
+    "@types/node": ^20.11.20
+    concurrently: ^8.2.2
+    cross-env: ^7.0.3
+    glob: ^10.3.12
+    tsx: ^4.7.1
+    typescript: ^5.3.3
   languageName: unknown
   linkType: soft
 
@@ -2553,12 +2581,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fsevents@npm:2.3.2":
+  version: 2.3.2
+  resolution: "fsevents@npm:2.3.2"
+  dependencies:
+    node-gyp: latest
+  checksum: 97ade64e75091afee5265e6956cb72ba34db7819b4c3e94c431d4be2b19b8bb7a2d4116da417950c3425f17c8fe693d25e20212cac583ac1521ad066b77ae31f
+  conditions: os=darwin
+  languageName: node
+  linkType: hard
+
 "fsevents@npm:~2.3.2, fsevents@npm:~2.3.3":
   version: 2.3.3
   resolution: "fsevents@npm:2.3.3"
   dependencies:
     node-gyp: latest
   checksum: 11e6ea6fea15e42461fc55b4b0e4a0a3c654faa567f1877dbd353f39156f69def97a69936d1746619d656c4b93de2238bf731f6085a03a50cabf287c9d024317
+  conditions: os=darwin
+  languageName: node
+  linkType: hard
+
+"fsevents@patch:fsevents@2.3.2#~builtin<compat/fsevents>":
+  version: 2.3.2
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  dependencies:
+    node-gyp: latest
   conditions: os=darwin
   languageName: node
   linkType: hard
@@ -2640,7 +2687,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2, glob@npm:^10.3.10":
+"glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:^10.3.12":
   version: 10.3.12
   resolution: "glob@npm:10.3.12"
   dependencies:
@@ -3700,6 +3747,30 @@ __metadata:
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
   checksum: a2e8092dd86c8396bdba9f2b5481032848525b3dc295ce9b57896f931e63fc16f79805144321f72976383fc249584672a75cc18d6777c6b757603f372f745981
+  languageName: node
+  linkType: hard
+
+"playwright-core@npm:1.43.0":
+  version: 1.43.0
+  resolution: "playwright-core@npm:1.43.0"
+  bin:
+    playwright-core: cli.js
+  checksum: b35265d356d87eb4114997e6af985ee3cb5a473f15a465d6e02834288a55f0cae4233a18178658389ff443f92405e020815fc165274d2262c3ca1c2b5be948cf
+  languageName: node
+  linkType: hard
+
+"playwright@npm:1.43.0":
+  version: 1.43.0
+  resolution: "playwright@npm:1.43.0"
+  dependencies:
+    fsevents: 2.3.2
+    playwright-core: 1.43.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    playwright: cli.js
+  checksum: edd4ef9644398c197d20e957cf2a5e5a95d7e0144f3c971923e709247f5b48551bf6168c74b34909f263ab96fac6e49466b65a9cd1349ad400dabd4b8b364acf
   languageName: node
   linkType: hard
 

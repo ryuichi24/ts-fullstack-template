@@ -13,8 +13,10 @@ export const App = () => {
     });
   }, [wsSocket.isConnected]);
   return (
-    <div>
-      <Layout>App</Layout>
-    </div>
+    <Layout>
+      <section>
+        <h1>TS Full Stack Template</h1>
+      </section>
+    </Layout>
   );
 };

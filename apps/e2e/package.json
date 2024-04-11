@@ -1,0 +1,23 @@
+{
+  "name": "@ts-fullstack-template/e2e",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "yarn build:test && cross-env NODE_OPTIONS='--experimental-import-meta-resolve' NODE_ENV=test playwright test --config playwright.config.ts",
+    "build:test": "tsc && cross-env NODE_ENV=development tsx scripts/build.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.0",
+    "@ts-fullstack-template/desktop-main": "*",
+    "@ts-fullstack-template/esbuild-config": "*",
+    "@ts-fullstack-template/tsconfig": "*",
+    "@types/node": "^20.11.20",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "glob": "^10.3.12",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  }
+}

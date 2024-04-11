@@ -4,6 +4,13 @@
   "pipeline": {
     "lint": {},
     "format": {},
+    "@ts-fullstack-template/e2e#test": {
+      "dependsOn": [
+        "^@ts-fullstack-template/desktop-main#build",
+        "^@ts-fullstack-template/desktop-renderer#build",
+        "^@ts-fullstack-template/desktop-bg-server#build"
+      ]
+    },
     "dev": {
       "cache": false,
       // https://github.com/vercel/turbo/issues/7279#issuecomment-1930454699

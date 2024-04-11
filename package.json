@@ -28,6 +28,7 @@
     "build:local": "dotenv -e ./.env -c local -- turbo run build:local --filter=!\\{\"./dev/**/*\"\\}",
     "build:debug": "dotenv -e ./.env -c local -- turbo run build:debug --filter=!\\{\"./dev/**/*\"\\}",
     "clean": "node ./scripts/clean.js . node_modules dist .turbo build-info.json",
+    "test": "turbo run @ts-fullstack-template/e2e#test",
     "postinstall": ""
   },
   "devDependencies": {

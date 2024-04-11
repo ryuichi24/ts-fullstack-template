@@ -1,0 +1,7 @@
+{
+  "extends": "@ts-fullstack-template/tsconfig/node",
+  "compilerOptions": {
+    "composite": true
+  },
+  "include": ["scripts"]
+}
