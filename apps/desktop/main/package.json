@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "yarn build && cross-env NODE_ENV=development concurrently \"yarn build:watch\" \"yarn electron:start\"",
     "build": "tsc && tsx scripts/build.ts && yarn copy:assets",
-    "build:debug": "tsc && cross-env NODE_ENV=debug tsx scripts/build.ts",
+    "build:debug": "tsc && cross-env NODE_ENV=debug tsx scripts/build.ts && yarn copy:assets",
     "build:watch": "cross-env ESBUILD_WATCH=true tsx scripts/build.ts",
     "copy:assets": "node -e \"const fs = require('fs'); const path = require('path'); const source = path.join('src', 'assets'); const dest = path.join('dist', 'assets'); fs.cpSync(source, dest, { recursive: true }); \"",
     "electron:start": "electron dist/index.js",
